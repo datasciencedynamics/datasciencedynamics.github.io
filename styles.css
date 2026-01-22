@@ -841,3 +841,11 @@ footer {
         transform: none;
     }
 }
+
+
+@media (max-width: 768px) {
+    .logo-item img {
+        height: auto;
+        max-width: 90vw;
+    }
+}
