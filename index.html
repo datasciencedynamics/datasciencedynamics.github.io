@@ -336,15 +336,37 @@
             statsObserver.observe(stat);
         });
     </script>
-    
+
     <script>
         const toggle = document.querySelector('.nav-toggle');
         const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-links a');
 
-        toggle.addEventListener('click', () => {
+        // Toggle menu open/close
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
+
+        // Close menu when a nav link is clicked
+        navItems.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (
+                navLinks.classList.contains('active') &&
+                !navLinks.contains(e.target) &&
+                !toggle.contains(e.target)
+            ) {
+                navLinks.classList.remove('active');
+            }
+        });
     </script>
+
 
 
 </body>
