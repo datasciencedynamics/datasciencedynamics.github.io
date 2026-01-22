@@ -532,6 +532,7 @@
 
         .logo-item img {
             height: 200px;
+            max-width: 400px;
             width: auto;
             object-fit: contain;
             filter: grayscale(0%);
