@@ -7,6 +7,836 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a2540;
+            --accent: #00d4aa;
+            --accent-dark: #00a885;
+            --secondary: #ff6b6b;
+            --text: #1a1a1a;
+            --text-light: #666;
+            --bg: #fafafa;
+            --white: #ffffff;
+            --gradient-start: #00d4aa;
+            --gradient-end: #0066ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(var(--primary) 1px, transparent 1px),
+                linear-gradient(90deg, var(--primary) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1.5rem 0;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 100px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-text .gradient-text {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 212, 170, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Visualization */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            animation: fadeIn 1.2s ease-out 0.8s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .data-viz {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(0, 102, 255, 0.1));
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            overflow: hidden;
+        }
+
+        .viz-bar {
+            height: 40px;
+            background: linear-gradient(90deg, var(--accent), var(--gradient-end));
+            border-radius: 8px;
+            position: relative;
+            opacity: 0;
+            animation: barGrow 1.5s ease-out forwards;
+        }
+
+        .viz-bar:nth-child(1) { animation-delay: 1s; width: 85%; }
+        .viz-bar:nth-child(2) { animation-delay: 1.2s; width: 72%; }
+        .viz-bar:nth-child(3) { animation-delay: 1.4s; width: 94%; }
+        .viz-bar:nth-child(4) { animation-delay: 1.6s; width: 68%; }
+        .viz-bar:nth-child(5) { animation-delay: 1.8s; width: 88%; }
+
+        @keyframes barGrow {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                opacity: 0.8;
+            }
+        }
+
+        .floating-card {
+            position: absolute;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(1) {
+            top: 10%;
+            right: -10%;
+            animation-delay: 0s;
+        }
+
+        .floating-card:nth-child(2) {
+            bottom: 15%;
+            left: -10%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .card-metric {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 212, 170, 0.1);
+            color: var(--accent-dark);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .section-header h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--gradient-end));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), var(--gradient-end));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 2rem;
+            background: var(--white);
+        }
+
+        .about-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg);
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .about-image {
+            position: relative;
+            height: 600px;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.05) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+        }
+
+        /* Recognition Section */
+        .recognition {
+            padding: 2rem 2rem;
+            background: var(--white);
+            overflow: hidden;
+        }
+
+        .recognition-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .recognition h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .logo-scroll {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+        }
+
+        .logo-item {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-item:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-item img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(0%);
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .logo-item:hover img {
+            opacity: 1;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 212, 170, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+
+        .contact-item-text {
+            flex: 1;
+        }
+
+        .contact-item-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item-value {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand img {
+            height: 45px;
+            width: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer-about {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-visual {
+                height: 400px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+
+        /* Team Section */
+        .about-team {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .team-member {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            background: var(--bg);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 4px solid var(--accent);
+        }
+
+        .team-bio h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-bio h3 a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .team-bio h3 a:hover {
+            color: var(--accent);
+        }
+
+        .team-bio p {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .team-member {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .team-photo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -44,8 +874,8 @@
                     <div class="viz-bar"></div>
                 </div>
                 <div class="floating-card">
-                    <div class="card-metric">UCLA</div>
-                    <div class="card-label">Health Partner</div>
+                    <div class="card-metric">Rigorous</div>
+                    <div class="card-label">Validation Methods</div>
                 </div>
                 <div class="floating-card">
                     <div class="card-metric">Research</div>
@@ -55,18 +885,18 @@
         </div>
     </section>
 
-<section class="recognition">
-    <div class="recognition-content">
-        <h2>Recognized By</h2>
-        <div class="logo-scroll">
-            <div class="logo-item">
-                <a href="https://jupytercon2025.sched.com/event/28H3P/eda-toolkit-tutorial-on-streamlining-exploratory-data-analysis-in-jupyter-leon-shpaner-ucla-health-oscar-gil-university-of-california-riverside" target="_blank" rel="noopener noreferrer">
-                    <img src="jupytercon-speaker-badge.png" alt="JupyterCon 2025 Speaker">
-                </a>
+    <section class="recognition">
+        <div class="recognition-content">
+            <h2>Featured In</h2>
+            <div class="logo-scroll">
+                <div class="logo-item">
+                    <a href="https://jupytercon2025.sched.com/event/28H3P/eda-toolkit-tutorial-on-streamlining-exploratory-data-analysis-in-jupyter-leon-shpaner-ucla-health-oscar-gil-university-of-california-riverside" target="_blank" rel="noopener noreferrer">
+                        <img src="jupytercon-speaker-badge.png" alt="JupyterCon 2025 Speaker">
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section class="services" id="services">
         <div class="section-header">
@@ -112,20 +942,20 @@
         <div class="about-content">
             <div class="about-text">
                 <h2>Expert Partnership for Data-Driven Solutions</h2>
-                <p>Applied Data Dynamics is founded by Leon Shpaner and Oscar Gil, bringing together decades of combined expertise in healthcare analytics, machine learning, and clinical research.</p>
-                <p>With a track record at UCLA Health and academic appointments across multiple institutions including Cornell University and UCLA Extension, our team specializes in translating complex data challenges into practical, validated solutions.</p>
+                <p>Applied Data Dynamics is founded by Leon Shpaner and Oscar Gil, bringing together decades of combined expertise in healthcare analytics, financial analysis, machine learning, and clinical research.</p>
+                <p>With a track record at UCLA Health and academic appointments across multiple institutions including Cornell University, UCLA Extension, UC Riverside, and University of San Diego, our team specializes in translating complex data challenges into practical, validated solutions.</p>
                 <p>We combine rigorous statistical methodology with cutting-edge machine learning techniques to deliver results that meet both academic standards and real-world operational needs.</p>
                 <div class="about-stats">
                     <div class="stat-item">
-                        <div class="stat-number">15+</div>
+                        <div class="stat-number">35+</div>
                         <div class="stat-label">Years Combined Experience</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">4</div>
+                        <div class="stat-number">5</div>
                         <div class="stat-label">Academic Institutions</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">100+</div>
+                        <div class="stat-number">10+</div>
                         <div class="stat-label">Models Deployed</div>
                     </div>
                     <div class="stat-item">
@@ -134,9 +964,20 @@
                     </div>
                 </div>
             </div>
-            <div class="about-image">
-                <div class="image-placeholder">
-                    <div class="image-overlay"></div>
+            <div class="about-team">
+                <div class="team-member">
+                    <img src="https://www.leonshpaner.com/author/leon-shpaner/avatar_hu48de79c369d5f7d4ff8056a297b2c4c5_1681850_270x270_fill_q90_lanczos_center.jpg" alt="Leon Shpaner" class="team-photo">
+                    <div class="team-bio">
+                        <h3><a href="https://www.leonshpaner.com" target="_blank" rel="noopener noreferrer">Leon Shpaner</a></h3>
+                        <p>(publishes academically as Leonid Shpaner) is a Data Scientist at UCLA Health. With over 15 years of experience in analytics and teaching, he has worked across healthcare, financial services, education, and personal development. He serves as an adjunct professor at various institutions, including the University of San Diego, where he teaches statistics and machine learning using Python in the M.S. in Applied Artificial Intelligence program.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://oscargildata.com/portfolio_content/images/Oscar_LinkedIn_Pic.jpeg" alt="Oscar Gil" class="team-photo">
+                    <div class="team-bio">
+                        <h3><a href="https://oscargildata.com" target="_blank" rel="noopener noreferrer">Oscar Gil</a></h3>
+                        <p>is a Data Scientist at the University of California, Riverside, bringing over ten years of professional experience in the education data management industry. An effective data professional, he excels in Data Warehousing, Data Analytics, Data Wrangling, Machine Learning, SQL, Python, R, Data Automation, and Report Authoring. Oscar holds a Master of Science in Applied Data Science from the University of San Diego.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -154,24 +995,24 @@
                 <p>We're here to help with your data science needs. Whether you're looking for consulting services, training programs, or research collaboration, we'd love to hear from you.</p>
                 <div class="contact-details">
                     <div class="contact-item">
-                        <div class="contact-item-icon">ðŸ“§</div>
+                        <div class="contact-item-icon">&#128231;</div>
                         <div class="contact-item-text">
                             <div class="contact-item-label">Email</div>
                             <div class="contact-item-value">info@applieddatadynamics.com</div>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-item-icon">ðŸ“</div>
+                        <div class="contact-item-icon">&#128205;</div>
                         <div class="contact-item-text">
                             <div class="contact-item-label">Location</div>
-                            <div class="contact-item-value">Los Angeles, California</div>
+                            <div class="contact-item-value">Southern California</div>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-item-icon">â°</div>
+                        <div class="contact-item-icon">&#9200;</div>
                         <div class="contact-item-text">
                             <div class="contact-item-label">Response Time</div>
-                            <div class="contact-item-value">Within 24 hours</div>
+                            <div class="contact-item-value">Within 48 hours</div>
                         </div>
                     </div>
                 </div>
@@ -218,7 +1059,7 @@
                 <ul>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="#">Careers</a></li>
+                    <li><a href="#contact">Careers</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
             </div>
