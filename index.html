@@ -15,17 +15,23 @@
     <div class="grid-background"></div>
 
     <header>
-        <nav>
+        <nav class="navbar">
             <div class="logo">
                 <img src="applied_data_dynamics_logo_tight_clipped_0_5mm.svg" alt="Applied Data Dynamics">
             </div>
-            <ul>
+
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
+
+            <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#impact">Impact</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+
     </header>
 
     <section class="hero">
@@ -330,5 +336,16 @@
             statsObserver.observe(stat);
         });
     </script>
+    
+    <script>
+        const toggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        toggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+
 </body>
 </html>
