@@ -848,6 +848,10 @@ footer {
         line-height: 1.2;
     }
 
+    .hero-visual {
+        display: none;
+    }
+
     /* Floating Cards */
     .floating-card {
         display: none;
