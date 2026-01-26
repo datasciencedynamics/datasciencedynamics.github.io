@@ -905,12 +905,6 @@ footer {
     }
 
     /* Team Section */
-    .team-member {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-    }
-
     .team-photo {
         width: 120px;
         height: 120px;
@@ -942,6 +936,20 @@ footer {
     }
 
     .about-stats {
+        margin-left: 0;
+        margin-right: 0;
+        gap: 1rem;
+    }
+
+    .stat-item {
+        padding: 1.5rem 1rem;
+    }
+
+    .team-member {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding: 1.5rem;
         margin-left: 0;
         margin-right: 0;
     }
