@@ -925,4 +925,29 @@ footer {
         line-height: 1.2;
     }
 
+
+    body {
+        overflow-x: hidden;
+    }
+    
+    .hero-content,
+    .services,
+    .about-content,
+    .contact-container,
+    .impact-content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+    
+    .data-viz {
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    .viz-bar {
+        max-width: 100%;
+    }
+
 }
