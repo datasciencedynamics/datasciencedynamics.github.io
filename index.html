@@ -10,8 +10,10 @@
 
 </head>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 
 <body>
+    <div id="particles-js"></div>
     <div class="grid-background"></div>
 
     <header>
@@ -72,32 +74,32 @@
             <p>Comprehensive solutions tailored to your analytical needs, from predictive modeling to custom tool development</p>
         </div>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('clinical')">
                 <div class="service-icon">&#128300;</div>
                 <h3>Clinical Prediction Modeling</h3>
                 <p>Develop sophisticated models for healthcare outcomes including kidney disease risk estimation, ICU mortality prediction, and patient stratification tools validated against clinical standards.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('ml')">
                 <div class="service-icon">&#129302;</div>
                 <h3>Machine Learning Applications</h3>
                 <p>Custom ML solutions using ensemble methods, neural networks, and advanced algorithms. Specializing in classification, regression, and time-series forecasting with comprehensive model evaluation.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('eda')">
                 <div class="service-icon">&#128202;</div>
                 <h3>Exploratory Data Analysis</h3>
                 <p>In-depth statistical analysis and visualization to uncover patterns, relationships, and insights. Author of production-grade EDA toolkits used across research institutions.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('tools')">
                 <div class="service-icon">&#9881;&#65039;</div>
                 <h3>Custom Tool Development</h3>
                 <p>Build proprietary Python libraries and analytical frameworks. Experience creating model diagnostics tools, SHAP explainers, and automated evaluation pipelines for reproducible research.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('training')">
                 <div class="service-icon">&#128218;</div>
                 <h3>Training & Education</h3>
                 <p>Corporate workshops and academic instruction in data science fundamentals, machine learning techniques, and best practices. Curriculum development for university-level courses.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="openModal('research')">
                 <div class="service-icon">&#128269;</div>
                 <h3>Research Collaboration</h3>
                 <p>Partner on academic research projects with emphasis on healthcare analytics, clinical decision support systems, and methodological innovation. Co-authorship and publication support.</p>
@@ -250,12 +252,6 @@
             <h3 class="footer-brand-text">Data Science Dynamics</h3>
             <p class="footer-about">Transforming complex data challenges into actionable intelligence through expert consulting, advanced analytics, and collaborative research.</p>
         </div>
-            <!-- <div>
-                <div class="footer-brand">
-                    <img src="data_science_dynamics_logo.svg" alt="Data Science Dynamics">
-                </div>
-                <p class="footer-about">Transforming complex data challenges into actionable intelligence through expert consulting, advanced analytics, and collaborative research.</p>
-            </div> -->
             <div class="footer-section">
                 <h4>Services</h4>
                 <ul>
@@ -280,11 +276,167 @@
         </div>
     </footer>
 
+    <!-- Service Modals -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-icon" id="modalIcon"></div>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc"></p>
+            <div class="modal-section-title">What We Offer</div>
+            <ul id="modalOffers"></ul>
+            <div class="modal-section-title">Why Choose Us</div>
+            <ul id="modalWhy"></ul>
+            <div class="modal-cta">
+                <a href="#contact" class="btn btn-primary" onclick="closeModal()">Let's Talk</a>
+                <span>Get a free consultation</span>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Modal content data
+        const modalData = {
+            clinical: {
+                icon: '🔬',
+                title: 'Clinical Prediction Modeling',
+                desc: 'We develop, validate, and deploy predictive models tailored to clinical decision-making. From early disease detection to mortality risk stratification, our models are built with rigorous statistical methodology and real-world applicability in mind.',
+                offers: [
+                    'Kidney failure risk estimation (KFRE) models validated against clinical benchmarks',
+                    'ICU mortality prediction with interpretable output for clinicians',
+                    'Patient stratification and risk scoring systems',
+                    'Survival analysis and time-to-event modeling',
+                    'Model validation using temporal holdout and cross-institutional testing'
+                ],
+                why: [
+                    'Direct experience working within UCLA Health systems',
+                    'Published research in clinical prediction and urology outcomes',
+                    'Models designed for transparency — clinicians understand the output',
+                    'End-to-end delivery from exploratory analysis to deployment-ready tools'
+                ]
+            },
+            ml: {
+                icon: '🤖',
+                title: 'Machine Learning Applications',
+                desc: 'We build custom ML pipelines from the ground up — from feature engineering and model selection through to evaluation and production deployment. Our approach prioritizes accuracy, interpretability, and maintainability.',
+                offers: [
+                    'Ensemble methods (XGBoost, Random Forest, stacking) tuned to your problem',
+                    'Deep neural network architectures for complex tabular and structured data',
+                    'Automated hyperparameter optimization with systematic tuning frameworks',
+                    'Classification, regression, and time-series forecasting solutions',
+                    'MLflow experiment tracking and reproducible pipeline design'
+                ],
+                why: [
+                    'Benchmarked deep learning against gradient boosting to identify the right approach',
+                    'Experience with automated ML tooling (model_tuner library)',
+                    'Focus on beating naive baselines with rigorous evaluation',
+                    'Scalable architectures that grow with your data'
+                ]
+            },
+            eda: {
+                icon: '📊',
+                title: 'Exploratory Data Analysis',
+                desc: 'Before any model is built, the data needs to be understood. Our EDA services uncover patterns, detect anomalies, assess distributions, and produce publication-quality visualizations that drive informed decision-making.',
+                offers: [
+                    'Comprehensive statistical summaries and distribution analysis',
+                    'Correlation analysis and multivariate relationship exploration',
+                    'Anomaly and outlier detection with contextual interpretation',
+                    'Interactive dashboards and publication-ready visualizations',
+                    'Data quality audits and cleaning recommendations'
+                ],
+                why: [
+                    'Author of a production-grade EDA toolkit (contracted for Taylor & Francis publication)',
+                    'Background in building interactive visualization websites',
+                    'Expertise in bridging raw data and actionable business insight',
+                    'Rigorous methodology grounded in statistical best practices'
+                ]
+            },
+            tools: {
+                icon: '⚙️',
+                title: 'Custom Tool Development',
+                desc: 'We design and build Python libraries, analytical frameworks, and automated pipelines specifically for your workflows. Our tools are open-source ready, well-documented, and built to production standards.',
+                offers: [
+                    'Custom Python packages with comprehensive test suites (80%+ coverage)',
+                    'Model diagnostics tools with residual analysis and LOWESS smoothing',
+                    'SHAP-based explainability integration for any sklearn-compatible model',
+                    'Automated evaluation pipelines (ROC curves, DeLong tests, calibration)',
+                    'MLflow integration for experiment tracking and model versioning'
+                ],
+                why: [
+                    'Built model_metrics — a full-featured model evaluation library',
+                    'Refactored 3,800+ line codebases into clean modular architectures',
+                    'Open-source mindset: documented, tested, and reusable',
+                    'Tools designed for researchers and practitioners alike'
+                ]
+            },
+            training: {
+                icon: '📚',
+                title: 'Training & Education',
+                desc: 'We deliver hands-on training programs and workshops that bridge the gap between theory and practice. Whether for corporate teams or academic settings, our curriculum is built around real-world projects and industry-standard tools.',
+                offers: [
+                    'Data science fundamentals — from statistics to machine learning',
+                    'Hands-on Python workshops (pandas, scikit-learn, visualization)',
+                    'Corporate training on predictive modeling and analytics',
+                    'University-level course design and curriculum development',
+                    'JupyterCon-style tutorial sessions and conference workshops'
+                ],
+                why: [
+                    'Active adjunct professor at Cornell, UCLA Extension, UC Riverside, and University of San Diego',
+                    'Teaching experience across data analytics, statistics, and ML',
+                    'Curriculum grounded in current industry practice, not just textbooks',
+                    'Engaging, project-based learning approach'
+                ]
+            },
+            research: {
+                icon: '🔍',
+                title: 'Research Collaboration',
+                desc: 'We partner with academic institutions and research teams to tackle complex analytical challenges. From study design through publication, we bring methodological rigor and machine learning expertise to collaborative projects.',
+                offers: [
+                    'Co-design of analytical frameworks for clinical and social science studies',
+                    'Machine learning applied to conflict data, epidemiology, and public health',
+                    'Temporal validation strategies for time-sensitive research questions',
+                    'Statistical methodology consulting (survival analysis, causal inference)',
+                    'Co-authorship and support through the full publication process'
+                ],
+                why: [
+                    'Active publications in BMC Urology and ML research journals',
+                    'Experience with ACLED conflict data and geospatial analysis',
+                    'Rigorous approach to temporal validation and avoiding data leakage',
+                    'Collaborative mindset — we integrate seamlessly with your team'
+                ]
+            }
+        };
+
+        function openModal(key) {
+            const data = modalData[key];
+            document.getElementById('modalIcon').textContent = data.icon;
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalDesc').textContent = data.desc;
+            document.getElementById('modalOffers').innerHTML = data.offers.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('modalWhy').innerHTML = data.why.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeModalOutside(e) {
+            if (e.target === document.getElementById('modalOverlay')) closeModal();
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                closeModal();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
@@ -318,30 +470,30 @@
         });
 
         // Animated counters for stats
-        function animateCounter(element, target, duration = 2000) {
+        function animateCounter(element, target, suffix, duration = 2000) {
             const start = 0;
             const increment = target / (duration / 16);
             let current = start;
-            
+
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
-                    element.textContent = target + '+';
+                    element.textContent = target + suffix;
                     clearInterval(timer);
                 } else {
-                    element.textContent = Math.floor(current) + '+';
+                    element.textContent = Math.floor(current) + suffix;
                 }
             }, 16);
         }
 
-        // Observe stat numbers for animation
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
                     entry.target.classList.add('counted');
                     const text = entry.target.textContent;
+                    const hasPlus = text.includes('+');
                     const number = parseInt(text.replace('+', ''));
-                    animateCounter(entry.target, number);
+                    animateCounter(entry.target, number, hasPlus ? '+' : '');
                 }
             });
         }, { threshold: 0.5 });
@@ -349,27 +501,23 @@
         document.querySelectorAll('.stat-number').forEach(stat => {
             statsObserver.observe(stat);
         });
-    </script>
 
-    <script>
+        // Mobile nav toggle
         const toggle = document.querySelector('.nav-toggle');
         const navLinks = document.querySelector('.nav-links');
         const navItems = document.querySelectorAll('.nav-links a');
 
-        // Toggle menu open/close
         toggle.addEventListener('click', (e) => {
             e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when a nav link is clicked
         navItems.forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (
                 navLinks.classList.contains('active') &&
@@ -379,9 +527,55 @@
                 navLinks.classList.remove('active');
             }
         });
+
+        // Particles.js initialization
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: ['#00d4aa', '#0066ff', '#ffffff'] },
+                shape: { type: 'circle' },
+                opacity: {
+                    value: 0.8,
+                    random: true,
+                    anim: { enable: true, speed: 1, opacity_min: 0.3, sync: false }
+                },
+                size: {
+                    value: 4,
+                    random: true,
+                    anim: { enable: true, speed: 2, size_min: 0.5, sync: false }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 160,
+                    color: '#00d4aa',
+                    opacity: 0.45,
+                    width: 1.2
+                },
+                move: {
+                    enable: true,
+                    speed: 1.5,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    hover: { enable: true, mode: 'grab' },
+                    click: { enable: true, mode: 'push' },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 200, line_linked: { opacity: 0.4 } },
+                    push: { particles_nb: 3 }
+                }
+            },
+            retina_detect: true
+        });
     </script>
-
-
 
 </body>
 </html>
