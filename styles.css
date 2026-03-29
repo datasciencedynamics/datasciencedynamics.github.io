@@ -1188,3 +1188,7 @@ footer {
         max-width: 100%;
     }
 }
+
+.photo-offset {
+    object-position: center 20%;
+}
