@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Data Science Dynamics offers expert data science consulting specializing in clinical prediction modeling, machine learning, and advanced analytics for healthcare and research institutions.">
     <title>Data Science Dynamics | Data Science Consulting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-</head>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+</head>
 
 <body>
     <div id="particles-js"></div>
@@ -40,7 +40,7 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1>Transform Data into <span class="gradient-text">Actionable Intelligence</span></h1>
-                <p>Expert data science consulting specializing in clinical prediction modeling, machine learning applications, and advanced analytics for healthcare and research institutions.</p>
+                <p>Expert data science consulting delivering machine learning solutions, predictive modeling, and advanced analytics across healthcare, research, and data-driven organizations.</p>
                 <div class="cta-buttons">
                     <a href="#contact" class="btn btn-primary">Start a Project</a>
                     <a href="#services" class="btn btn-secondary">Explore Services</a>
@@ -74,11 +74,6 @@
             <p>Comprehensive solutions tailored to your analytical needs, from predictive modeling to custom tool development</p>
         </div>
         <div class="services-grid">
-            <div class="service-card" onclick="openModal('clinical')">
-                <div class="service-icon">&#128300;</div>
-                <h3>Clinical Prediction Modeling</h3>
-                <p>Develop sophisticated models for healthcare outcomes including kidney disease risk estimation, ICU mortality prediction, and patient stratification tools validated against clinical standards.</p>
-            </div>
             <div class="service-card" onclick="openModal('ml')">
                 <div class="service-icon">&#129302;</div>
                 <h3>Machine Learning Applications</h3>
@@ -88,6 +83,11 @@
                 <div class="service-icon">&#128202;</div>
                 <h3>Exploratory Data Analysis</h3>
                 <p>In-depth statistical analysis and visualization to uncover patterns, relationships, and insights. Author of production-grade EDA toolkits used across research institutions.</p>
+            </div>
+            <div class="service-card" onclick="openModal('clinical')">
+                <div class="service-icon">&#128300;</div>
+                <h3>Clinical Prediction Modeling</h3>
+                <p>Develop sophisticated models for healthcare outcomes including kidney disease risk estimation, ICU mortality prediction, and patient stratification tools validated against clinical standards.</p>
             </div>
             <div class="service-card" onclick="openModal('tools')">
                 <div class="service-icon">&#9881;&#65039;</div>
@@ -233,7 +233,7 @@
                 <form action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="b7b5c224-d9d7-4f76-819b-172bf09bba70">
                     <input type="hidden" name="subject" value="New Contact Form Submission from Data Science Dynamics">
-                    
+
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -261,9 +261,9 @@
             <div class="footer-section">
                 <h4>Services</h4>
                 <ul>
-                    <li><a href="#services">Clinical Modeling</a></li>
                     <li><a href="#services">Machine Learning</a></li>
                     <li><a href="#services">Data Analysis</a></li>
+                    <li><a href="#services">Clinical Modeling</a></li>
                     <li><a href="#services">Custom Tools</a></li>
                 </ul>
             </div>
@@ -272,7 +272,6 @@
                 <ul>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="#contact">Careers</a></li>
                     <li><a href="privacy.html">Privacy Policy</a></li>
                 </ul>
             </div>
@@ -303,26 +302,7 @@
     </div>
 
     <script>
-        // Modal content data
         const modalData = {
-            clinical: {
-                icon: '🔬',
-                title: 'Clinical Prediction Modeling',
-                desc: 'We develop, validate, and deploy predictive models tailored to clinical decision-making. From early disease detection to mortality risk stratification, our models are built with rigorous statistical methodology and real-world applicability in mind.',
-                offers: [
-                    'Kidney failure risk estimation (KFRE) models validated against clinical benchmarks',
-                    'ICU mortality prediction with interpretable output for clinicians',
-                    'Patient stratification and risk scoring systems',
-                    'Survival analysis and time-to-event modeling',
-                    'Model validation using temporal holdout and cross-institutional testing'
-                ],
-                why: [
-                    'Direct experience working within UCLA Health systems',
-                    'Published research in clinical prediction and urology outcomes',
-                    'Models designed for transparency — clinicians understand the output',
-                    'End-to-end delivery from exploratory analysis to deployment-ready tools'
-                ]
-            },
             ml: {
                 icon: '🤖',
                 title: 'Machine Learning Applications',
@@ -357,6 +337,24 @@
                     'Background in building interactive visualization websites',
                     'Expertise in bridging raw data and actionable business insight',
                     'Rigorous methodology grounded in statistical best practices'
+                ]
+            },
+            clinical: {
+                icon: '🔬',
+                title: 'Clinical Prediction Modeling',
+                desc: 'We develop, validate, and deploy predictive models tailored to clinical decision-making. From early disease detection to mortality risk stratification, our models are built with rigorous statistical methodology and real-world applicability in mind.',
+                offers: [
+                    'Kidney failure risk estimation (KFRE) models validated against clinical benchmarks',
+                    'ICU mortality prediction with interpretable output for clinicians',
+                    'Patient stratification and risk scoring systems',
+                    'Survival analysis and time-to-event modeling',
+                    'Model validation using temporal holdout and cross-institutional testing'
+                ],
+                why: [
+                    'Direct experience working within UCLA Health systems',
+                    'Published research in clinical prediction and urology outcomes',
+                    'Models designed for transparency — clinicians understand the output',
+                    'End-to-end delivery from exploratory analysis to deployment-ready tools'
                 ]
             },
             tools: {
