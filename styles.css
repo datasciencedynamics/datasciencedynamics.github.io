@@ -18,7 +18,7 @@
 }
 
 body {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     color: var(--text);
     background: var(--bg);
     line-height: 1.6;
@@ -67,7 +67,7 @@ header {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 1.5rem 0;
+    padding: 0.5rem 0;
     animation: slideDown 0.8s ease-out;
 }
 
@@ -147,7 +147,7 @@ nav a:hover::after {
 
 /* Hero Section */
 .hero {
-    margin-top: 100px;
+    margin-top: 80px;
     min-height: 85vh;
     display: flex;
     align-items: center;
@@ -167,7 +167,7 @@ nav a:hover::after {
 }
 
 .hero-text h1 {
-    font-family: 'DM Serif Display', serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 4.5rem;
     line-height: 1.1;
     color: var(--primary);
@@ -217,7 +217,7 @@ nav a:hover::after {
     text-decoration: none;
     display: inline-block;
     transition: all 0.3s ease;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .btn-primary {
@@ -360,7 +360,7 @@ nav a:hover::after {
 }
 
 .section-header h2 {
-    font-family: 'DM Serif Display', serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 3rem;
     color: var(--primary);
     margin-bottom: 1rem;
@@ -546,7 +546,7 @@ nav a:hover::after {
 }
 
 .modal h2 {
-    font-family: 'DM Serif Display', serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 2.2rem;
     color: var(--primary);
     margin-bottom: 1rem;
@@ -632,7 +632,7 @@ nav a:hover::after {
 }
 
 .about-text h2 {
-    font-family: 'DM Serif Display', serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 3rem;
     color: var(--primary);
     margin-bottom: 2rem;
@@ -776,7 +776,7 @@ nav a:hover::after {
 }
 
 .contact-info h2 {
-    font-family: 'DM Serif Display', serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 2.5rem;
     color: var(--primary);
     margin-bottom: 1.5rem;
@@ -852,7 +852,7 @@ nav a:hover::after {
     padding: 1rem;
     border: 2px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 1rem;
     transition: border-color 0.3s ease;
 }

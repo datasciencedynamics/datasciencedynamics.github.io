@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Data Science Dynamics offers expert data science consulting specializing in clinical prediction modeling, machine learning, and advanced analytics for healthcare and research institutions.">
     <title>Data Science Dynamics | Data Science Consulting</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 </head>
@@ -19,7 +19,8 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <img src="data_science_dynamics_logo.svg" alt="Data Science Dynamics">
+                <img src="data_science_dynamics_logo.svg" alt="Data Science Dynamics" style="max-width: 300px;">
+    
             </div>
 
             <button class="nav-toggle" aria-label="Toggle navigation">
@@ -255,7 +256,7 @@
     <footer>
         <div class="footer-content">
         <div>
-            <h3 class="footer-brand-text">Data Science Dynamics</h3>
+            <img src="data_science_dynamics_logo_white.svg" alt="Data Science Dynamics" class="footer-logo" style="max-width: 300px; margin-bottom: 15px;">
             <p class="footer-about">Transforming complex data challenges into actionable intelligence through expert consulting, advanced analytics, and collaborative research.</p>
         </div>
             <div class="footer-section">
@@ -581,6 +582,21 @@
             },
             retina_detect: true
         });
+
+        // Prevent right-click on images
+        document.addEventListener('contextmenu', function (e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent drag-and-drop saving
+        document.addEventListener('dragstart', function (e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+        
     </script>
 
 </body>
