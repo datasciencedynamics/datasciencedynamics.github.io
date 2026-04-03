@@ -8,13 +8,9 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <style>
-        /* ── CSS variables (mirrors styles.css) ── */
+        /* ── Override body/bg for portfolio ── */
         :root {
-            --primary: #0a2540;
-            --accent: #00d4aa;
-            --accent-dark: #00a885;
-            --text-light: #666;
-            --gradient-end: #0066ff;
+            --bg: #ffffff;
         }
 
         body {
@@ -33,7 +29,7 @@
         }
 
         .portfolio-hero h1 {
-            font-family: 'DM Serif Display', serif;
+            font-family: Helvetica, Arial, sans-serif;
             font-size: 3rem;
             color: var(--primary);
             margin-bottom: 1rem;
@@ -60,7 +56,7 @@
             padding: 12px 24px;
             font-size: 0.95rem;
             font-weight: 600;
-            font-family: 'IBM Plex Sans', sans-serif;
+            font-family: Helvetica, Arial, sans-serif;
             color: #0a2540;
             background: #ffffff;
             border: 1.5px solid rgba(0, 0, 0, 0.15);
@@ -180,12 +176,6 @@
             line-height: 1.6;
         }
 
-        /* ── Footer z-index ── */
-        footer {
-            position: relative;
-            z-index: 1;
-        }
-
         /* ── Responsive ── */
         @media (max-width: 1024px) {
             .projects-grid {
@@ -246,9 +236,10 @@
             <a href="https://datasciencedynamics.com/eda_toolkit_docs" target="_blank" rel="noopener noreferrer" class="portfolio-btn">
                 EDA Toolkit Library
             </a>
-            <a href="https://data-science-salon-podcast.simplecast.com/episodes/reproducible-eda-building-trustworthy-analytics-pipelines-nKzHV0Vh?fbclid=IwY2xjawOwSvdleHRuA2FlbQIxMABicmlkETFlN2NKMTNVYjM2UGZZMWZzc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtG63hGZ8jcOrWCN4FzMJAbVuhAi6TTV0Xy-Zfo6PUQtToefMqNfKFtMoSeg_aem_1Fs2f00f70zv9YuYCoP3eg" target="_blank" rel="noopener noreferrer" class="portfolio-btn">
-                Data Science Salon Podcast
+            <a href="" target="_blank" rel="noopener noreferrer" class="portfolio-btn">
+                Abstract (PDF Version)
             </a>
+        </div>
     </div>
 
     <section class="projects-section">
@@ -273,7 +264,7 @@
             <div class="project-card">
                 <a href="https://jupytercon2025.sched.com/event/28H3P/eda-toolkit-tutorial-on-streamlining-exploratory-data-analysis-in-jupyter-leon-shpaner-ucla-health-oscar-gil-university-of-california-riverside" target="_blank" rel="noopener noreferrer">
                     <div class="project-card-image">
-                        <img src="./images/EDA_Toolkit_JupyterCon2025.png"
+                        <img src="images/EDA_Toolkit_JupyterCon2025.png"
                              alt="EDA Toolkit JupyterCon 2025"
                              draggable="false"
                              oncontextmenu="return false;">
