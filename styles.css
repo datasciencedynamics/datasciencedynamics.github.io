@@ -5,7 +5,7 @@
     --secondary: #ff6b6b;
     --text: #1a1a1a;
     --text-light: #666;
-    --bg: #fafafa;
+    --bg: #ffffff;
     --white: #ffffff;
     --gradient-start: #00d4aa;
     --gradient-end: #0066ff;
@@ -617,7 +617,6 @@ nav a:hover::after {
 /* About Section */
 .about {
     padding: 8rem 2rem;
-    background: var(--white);
     position: relative;
     z-index: 1;
 }
@@ -701,7 +700,6 @@ nav a:hover::after {
 /* Impact Section */
 .impact {
     padding: 2rem 2rem;
-    background: var(--white);
     overflow: hidden;
     position: relative;
     z-index: 1;
