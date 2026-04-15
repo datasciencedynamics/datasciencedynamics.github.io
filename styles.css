@@ -611,19 +611,46 @@ nav a:hover::after {
     flex-direction: column;
     align-items: center;
     text-align: left;
-    background: rgba(255, 255, 255, 0.92);
-    padding: 2rem 1.5rem;
+    background: var(--white);
+    padding: 2.5rem 2rem;
     border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     gap: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.team-member::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--gradient-end));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.team-member:hover::before {
+    transform: scaleX(1);
 }
 
 .team-photo {
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     object-fit: cover;
-    flex-shrink: 0;
     border: 4px solid var(--accent);
+    display: block;
 }
 
 .team-bio h3 {
