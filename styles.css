@@ -246,95 +246,46 @@ nav a:hover::after {
 
 /* Hero Visualization */
 .hero-visual {
-    position: relative;
-    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     animation: fadeIn 1.2s ease-out 0.8s both;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.data-viz {
-    position: absolute;
+/* Hero Stats Grid */
+.hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(0, 102, 255, 0.1));
-    border-radius: 20px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    overflow: hidden;
 }
 
-.viz-bar {
-    height: 40px;
-    background: linear-gradient(90deg, var(--accent), var(--gradient-end));
-    border-radius: 8px;
-    position: relative;
-    opacity: 0;
-    animation: barGrow 1.5s ease-out forwards;
+.hero-stat {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    border: 1px solid rgba(0, 212, 170, 0.15);
 }
 
-.viz-bar:nth-child(1) { animation-delay: 1s; width: 85%; }
-.viz-bar:nth-child(2) { animation-delay: 1.2s; width: 72%; }
-.viz-bar:nth-child(3) { animation-delay: 1.4s; width: 94%; }
-.viz-bar:nth-child(4) { animation-delay: 1.6s; width: 68%; }
-.viz-bar:nth-child(5) { animation-delay: 1.8s; width: 88%; }
-
-@keyframes barGrow {
-    from {
-        width: 0;
-        opacity: 0;
-    }
-    to {
-        opacity: 0.8;
-    }
-}
-
-.floating-card {
-    position: absolute;
-    background: var(--white);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    animation: float 3s ease-in-out infinite;
-}
-
-.floating-card:nth-child(1) {
-    top: 10%;
-    right: -10%;
-    animation-delay: 0s;
-}
-
-.floating-card:nth-child(2) {
-    bottom: 15%;
-    left: -10%;
-    animation-delay: 1s;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-}
-
-.card-metric {
-    font-size: 2rem;
+.hero-stat-number {
+    font-size: 2.75rem;
     font-weight: 700;
     color: var(--accent);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
+    line-height: 1;
 }
 
-.card-label {
+.hero-stat-label {
     font-size: 0.9rem;
     color: var(--text-light);
+    line-height: 1.4;
 }
 
 /* Services Section */
 .services {
-    padding: 8rem 2rem;
+    padding: 5rem 2rem;
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
@@ -343,7 +294,7 @@ nav a:hover::after {
 
 .section-header {
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .section-tag {
@@ -616,7 +567,7 @@ nav a:hover::after {
 
 /* About Section */
 .about {
-    padding: 8rem 2rem;
+    padding: 5rem 2rem 3rem;
     position: relative;
     z-index: 1;
 }
@@ -624,77 +575,77 @@ nav a:hover::after {
 .about-content {
     max-width: 1400px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-.about-text h2 {
+.about-intro {
+    width: 100%;
+}
+
+.about-intro h2 {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 3rem;
+    font-size: 1.75rem;
+    font-weight: 600;
     color: var(--primary);
-    margin-bottom: 2rem;
-    line-height: 1.2;
+    margin: 0;
 }
 
-.about-text p {
+.about-intro p {
     font-size: 1.1rem;
     color: var(--text-light);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     line-height: 1.8;
 }
 
-.about-stats {
+/* Team Section */
+.about-team {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin-top: 3rem;
 }
 
-.stat-item {
-    text-align: center;
-    padding: 2rem;
-    background: var(--bg);
-    border-radius: 12px;
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    gap: 1.25rem;
 }
 
-.stat-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--accent);
+.team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 4px solid var(--accent);
+}
+
+.team-bio h3 {
+    font-size: 1.2rem;
+    color: var(--primary);
     margin-bottom: 0.5rem;
 }
 
-.stat-label {
+.team-bio h3 a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.team-bio h3 a:hover {
+    color: var(--accent);
+}
+
+.team-bio p {
+    font-size: 0.95rem;
     color: var(--text-light);
-    font-size: 1rem;
-}
-
-.about-image {
-    position: relative;
-    height: 600px;
-}
-
-.image-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-}
-
-.image-overlay {
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.05) 10px,
-        transparent 10px,
-        transparent 20px
-    );
+    line-height: 1.7;
 }
 
 /* Impact Section */
@@ -756,7 +707,7 @@ nav a:hover::after {
 
 /* Contact Section */
 .contact {
-    padding: 8rem 2rem;
+    padding: 5rem 2rem;
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
@@ -929,52 +880,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Team Section */
-.about-team {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-}
-
-.team-member {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-    background: var(--bg);
-    padding: 2rem;
-    border-radius: 16px;
-}
-
-.team-photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-    border: 4px solid var(--accent);
-}
-
-.team-bio h3 {
-    font-size: 1.5rem;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-}
-
-.team-bio h3 a {
-    color: var(--primary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.team-bio h3 a:hover {
-    color: var(--accent);
-}
-
-.team-bio p {
-    font-size: 1rem;
-    color: var(--text-light);
-    line-height: 1.7;
-}
 
 /* ========================================
    RESPONSIVE DESIGN - TABLET
@@ -993,10 +898,12 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .about-content,
-    .contact-container {
+    .about-team {
         grid-template-columns: 1fr;
-        gap: 3rem;
+    }
+
+    .hero-visual {
+        display: flex;
     }
 
     .footer-content {
@@ -1048,13 +955,18 @@ footer {
     }
 
     .hero-visual {
-        display: none;
+        display: flex;
+    }
+
+    .hero-stats {
+        gap: 1rem;
+    }
+
+    .hero-stat-number {
+        font-size: 2rem;
     }
 
     /* Floating Cards */
-    .floating-card {
-        display: none;
-    }
 
     /* Background Grid */
     .grid-background {
@@ -1072,7 +984,7 @@ footer {
     }
 
     .section-header h2 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     /* CTA Buttons */
@@ -1134,56 +1046,15 @@ footer {
     }
 
     .about {
-        padding: 4rem 1.5rem;
+        padding: 3rem 1.5rem 2rem;
     }
 
     .contact {
-        padding: 4rem 1.5rem;
+        padding: 3rem 1.5rem;
     }
 
-    /* Overflow Control */
     body {
         overflow-x: hidden;
-    }
-
-    .hero-content,
-    .services,
-    .about-content,
-    .contact-container {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        max-width: 100vw;
-        box-sizing: border-box;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .about-stats {
-        margin-left: 0;
-        margin-right: 0;
-        gap: 1rem;
-    }
-
-    .stat-item {
-        padding: 1.5rem 1rem;
-    }
-
-    .team-member {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-        padding: 1.5rem;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .data-viz {
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .viz-bar {
-        max-width: 100%;
     }
 }
 

@@ -49,20 +49,23 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="data-viz">
-                    <div class="viz-bar"></div>
-                    <div class="viz-bar"></div>
-                    <div class="viz-bar"></div>
-                    <div class="viz-bar"></div>
-                    <div class="viz-bar"></div>
-                </div>
-                <div class="floating-card">
-                    <div class="card-metric">Rigorous</div>
-                    <div class="card-label">Validation Standards</div>
-                </div>
-                <div class="floating-card">
-                    <div class="card-metric">Research</div>
-                    <div class="card-label">Grade Methods</div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">35+</div>
+                        <div class="hero-stat-label">Years Combined Experience</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">5</div>
+                        <div class="hero-stat-label">Academic Institutions</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">10+</div>
+                        <div class="hero-stat-label">Models Deployed</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">10+</div>
+                        <div class="hero-stat-label">Publications</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -141,43 +144,23 @@
 
     <section class="about" id="about">
         <div class="about-content">
-            <div class="about-text">
+            <div class="section-header">
+                <span class="section-tag">Who We Are</span>
                 <h2>Expert Partnership for Data-Driven Solutions</h2>
-                <p>Data Science Dynamics is founded by Leon Shpaner and Oscar Gil, bringing together decades of combined expertise in healthcare analytics, financial analysis, machine learning, and clinical research.</p>
-                <p>With a track record at a top academic medical center and teaching appointments across five universities, our team specializes in translating complex data challenges into practical, validated solutions.</p>
-                <p>We combine rigorous statistical methodology with cutting-edge machine learning techniques to deliver results that meet both academic standards and real-world operational needs.</p>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">35+</div>
-                        <div class="stat-label">Years Combined Experience</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">5</div>
-                        <div class="stat-label">Academic Institutions</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Models Deployed</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Publications</div>
-                    </div>
-                </div>
             </div>
             <div class="about-team">
                 <div class="team-member">
                     <img src="./photos/leonshpaner.jpg" alt="Leon Shpaner" class="team-photo">
                     <div class="team-bio">
                         <h3><a href="https://www.leonshpaner.com" target="_blank" rel="noopener noreferrer">Leon Shpaner, M.S.</a></h3>
-                        <p>(publishes academically as Leonid Shpaner) is a Data Scientist at UCLA Health. With over 15 years of experience in analytics and teaching, he has worked across healthcare, financial services, education, and personal development. He serves as an adjunct professor at various institutions, including the University of San Diego, where he teaches statistics and machine learning using Python in the M.S. in Applied Artificial Intelligence program.</p>
+                        <p>is a Data Scientist at UCLA Health with over 15 years of experience across healthcare, financial services, and education. He serves as an adjunct professor at the University of San Diego, where he teaches statistics and machine learning in the M.S. in Applied Artificial Intelligence program. He has contributed to clinical prediction research, co-developed a production-grade EDA toolkit contracted for publication with Taylor & Francis, and presented at JupyterCon 2025.</p>
                     </div>
                 </div>
                 <div class="team-member">
                     <img src="./photos/Oscar_LinkedIn_Pic.jpeg" alt="Oscar Gil" class="team-photo">
                     <div class="team-bio">
                         <h3><a href="https://oscargildata.com" target="_blank" rel="noopener noreferrer">Oscar Gil, M.S.</a></h3>
-                        <p>is a Data Scientist at the University of California, Riverside, bringing over ten years of professional experience in the education data management industry. An effective data professional, he excels in Data Warehousing, Data Analytics, Data Wrangling, Machine Learning, SQL, Python, R, Data Automation, and Report Authoring. Oscar holds a Master of Science in Applied Data Science from the University of San Diego.</p>
+                        <p>is a Data Scientist at the University of California, Riverside, with over ten years of experience in the education data management industry. He excels in data warehousing, analytics, machine learning, SQL, Python, R, and report authoring, and holds an M.S. in Applied Data Science from the University of San Diego. He has co-developed analytical tools and pipelines deployed in research and institutional settings, and presented alongside Leon at JupyterCon 2025.</p>
                     </div>
                 </div>
                 <div class="team-member">
@@ -500,7 +483,7 @@
             });
         }, { threshold: 0.5 });
 
-        document.querySelectorAll('.stat-number').forEach(stat => {
+        document.querySelectorAll('.hero-stat-number').forEach(stat => {
             statsObserver.observe(stat);
         });
 
