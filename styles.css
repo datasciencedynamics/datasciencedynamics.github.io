@@ -363,16 +363,43 @@ nav a:hover::after {
     transform: scaleX(1);
 }
 
+/* Service Icon — editorial numbered label with accent rule */
 .service-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--accent), var(--gradient-end));
-    border-radius: 12px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
+    gap: 0.9rem;
+    margin-bottom: 1.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--accent-dark);
+    font-variant-numeric: tabular-nums;
+    /* Neutralize any legacy tile styling from prior iterations */
+    width: auto;
+    height: auto;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    overflow: visible;
+}
+
+.service-icon::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(10, 37, 64, 0.12);
+    transition: background 0.4s ease, transform 0.4s ease;
+    transform-origin: left;
+}
+
+.service-card:hover .service-icon::after {
+    background: var(--accent);
+}
+
+/* Hide any stray SVG/emoji if leftover in markup */
+.service-icon svg,
+.service-icon img {
+    display: none;
 }
 
 .service-card h3 {
