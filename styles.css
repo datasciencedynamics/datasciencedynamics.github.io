@@ -30,6 +30,8 @@ body {
     overflow-x: hidden;
 }
 
+#particles-js { display: none; }
+
 /* Particles */
 #particles-js {
     position: fixed;
