@@ -1,0 +1,311 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Portfolio | Data Science Dynamics"
+  description="Data Science Dynamics portfolio — selected presentations, publications, and conference contributions in data science and clinical research."
+>
+
+  <style>
+    .portfolio-wrap {
+      background: #EEF4FB;
+      position: relative;
+      z-index: 1;
+    }
+
+    .projects-section {
+      padding: 2rem 2rem 6rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+
+    .portfolio-divider {
+      grid-column: 1 / -1;
+      padding: 1.75rem 0 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      scroll-margin-top: 160px;
+    }
+
+    .portfolio-divider:first-child {
+      padding-top: 0;
+    }
+
+    .project-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--gradient-end));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+      z-index: 1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      border-color: rgba(56, 89, 141, 0.25);
+    }
+
+    .project-card:hover::before { transform: scaleX(1); }
+
+    .project-card:hover .service-card-cta { background: rgba(56, 89, 141, 0.12); }
+
+    .project-card a { text-decoration: none; color: inherit; }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .card-image--logo {
+      background: #f0f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 2rem;
+    }
+
+    .card-image--logo img {
+      width: auto;
+      height: auto;
+      max-width: 75%;
+      max-height: 110px;
+      object-fit: contain;
+    }
+
+    .card-body {
+      padding: 1.75rem 2rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-body h3 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--primary);
+      margin-bottom: 0.65rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .card-body p {
+      color: var(--text-light);
+      line-height: 1.65;
+      font-size: 0.92rem;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Section nav anchors below portfolio hero */
+    .portfolio-section-nav {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .portfolio-section-nav a {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 1.1rem;
+      background: rgba(9, 36, 64, 0.07);
+      color: #092440;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .portfolio-section-nav a:hover {
+      background: #38598D;
+      color: #ffffff;
+    }
+
+    @media (max-width: 1024px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .portfolio-hero h1 { font-size: 2.25rem; }
+    }
+  </style>
+
+  <div class="portfolio-hero">
+    <h1>Portfolio</h1>
+    <p>Selected presentations, publications, and conference contributions from the Data Science Dynamics team.</p>
+    <nav class="portfolio-section-nav" aria-label="Jump to section">
+      <a href="#library">Library</a>
+      <a href="#presentations">Presentations</a>
+      <a href="#podcast">Podcast</a>
+    </nav>
+  </div>
+
+  <div class="portfolio-wrap">
+    <section class="projects-section">
+      <div class="portfolio-grid">
+
+        <!-- LIBRARY -->
+        <div class="portfolio-divider" id="library">
+          <span class="section-tag">Library</span>
+        </div>
+
+        <div class="project-card">
+          <a href="https://lshpaner.github.io/eda_toolkit_docs" target="_blank" rel="noopener noreferrer">
+            <div class="card-image card-image--logo">
+              <img src="/eda_toolkit_logo.svg" alt="EDA Toolkit" draggable="false" />
+            </div>
+          </a>
+          <div class="card-body">
+            <a href="https://lshpaner.github.io/eda_toolkit_docs" target="_blank" rel="noopener noreferrer">
+              <h3>EDA Toolkit Library</h3>
+            </a>
+            <p>Production-grade Python library for streamlined, reproducible exploratory data analysis. Contracted for publication with Taylor & Francis.</p>
+            <a href="https://lshpaner.github.io/eda_toolkit_docs" target="_blank" rel="noopener noreferrer" class="service-card-cta">View Docs <span class="cta-arrow">→</span></a>
+          </div>
+        </div>
+
+        <!-- PRESENTATIONS -->
+        <div class="portfolio-divider" id="presentations">
+          <span class="section-tag">Presentations</span>
+        </div>
+
+        <div class="project-card">
+          <a href="https://youtu.be/Trxoq2B8E9w?si=zzuOSBb-GUfIzoZu" target="_blank" rel="noopener noreferrer">
+            <div class="card-image">
+              <img src="/images/EDA_Toolkit_BIT26.png" alt="EDA Toolkit BIT26 Leon Shpaner" draggable="false" />
+            </div>
+          </a>
+          <div class="card-body">
+            <a href="https://youtu.be/Trxoq2B8E9w?si=zzuOSBb-GUfIzoZu" target="_blank" rel="noopener noreferrer">
+              <h3>EDA Toolkit: A Unified Framework for Transparent and Reproducible Data Science Workflows</h3>
+            </a>
+            <p>BioIT World 2026 — presented by Leon Shpaner.</p>
+            <a href="https://youtu.be/Trxoq2B8E9w?si=zzuOSBb-GUfIzoZu" target="_blank" rel="noopener noreferrer" class="service-card-cta">Watch <span class="cta-arrow">→</span></a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <a href="/files/Reproducible_Exploratory_Data_Analysis_Frameworks_for_Pediatric_and_Lifespan_Clinical_Research.pdf" target="_blank" rel="noopener noreferrer">
+            <div class="card-image">
+              <img src="/images/choc_pediatric_lifespan_2026.png" alt="CHOC Pediatric and Lifespan Data Science Conference 2026" draggable="false" />
+            </div>
+          </a>
+          <div class="card-body">
+            <a href="/files/Reproducible_Exploratory_Data_Analysis_Frameworks_for_Pediatric_and_Lifespan_Clinical_Research.pdf" target="_blank" rel="noopener noreferrer">
+              <h3>Reproducible EDA Frameworks for Clinical Research</h3>
+            </a>
+            <p>2026 Pediatric and Lifespan Data Science Conference — poster presentation.</p>
+            <a href="/files/Reproducible_Exploratory_Data_Analysis_Frameworks_for_Pediatric_and_Lifespan_Clinical_Research.pdf" target="_blank" rel="noopener noreferrer" class="service-card-cta">View Poster <span class="cta-arrow">→</span></a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <a href="https://jupytercon2025.sched.com/event/28H3P/eda-toolkit-tutorial-on-streamlining-exploratory-data-analysis-in-jupyter-leon-shpaner-ucla-health-oscar-gil-university-of-california-riverside" target="_blank" rel="noopener noreferrer">
+            <div class="card-image">
+              <img src="/images/EDA_Toolkit_JupyterCon2025.png" alt="EDA Toolkit JupyterCon 2025" draggable="false" />
+            </div>
+          </a>
+          <div class="card-body">
+            <a href="https://jupytercon2025.sched.com/event/28H3P/eda-toolkit-tutorial-on-streamlining-exploratory-data-analysis-in-jupyter-leon-shpaner-ucla-health-oscar-gil-university-of-california-riverside" target="_blank" rel="noopener noreferrer">
+              <h3>EDA Toolkit: Streamlining Exploratory Data Analysis in Jupyter</h3>
+            </a>
+            <p>JupyterCon 2025 — tutorial session by Leon Shpaner and Oscar Gil.</p>
+            <a href="https://youtu.be/X0xQrCQTsKw?si=MTNSFgauhZLFRxMk" target="_blank" rel="noopener noreferrer" class="service-card-cta">Watch <span class="cta-arrow">→</span></a>
+          </div>
+        </div>
+
+        <!-- PODCAST -->
+        <div class="portfolio-divider" id="podcast">
+          <span class="section-tag">Podcast</span>
+        </div>
+
+        <div class="project-card">
+          <a href="https://data-science-salon-podcast.simplecast.com/episodes/reproducible-eda-building-trustworthy-analytics-pipelines-nKzHV0Vh" target="_blank" rel="noopener noreferrer">
+            <div class="card-image card-image--logo">
+              <img src="/DSS-PODCAST-LOGO.png" alt="Data Science Salon Podcast" draggable="false" />
+            </div>
+          </a>
+          <div class="card-body">
+            <a href="https://data-science-salon-podcast.simplecast.com/episodes/reproducible-eda-building-trustworthy-analytics-pipelines-nKzHV0Vh" target="_blank" rel="noopener noreferrer">
+              <h3>Data Science Salon: Reproducible EDA & Trustworthy Analytics Pipelines</h3>
+            </a>
+            <p>Featured episode on building reproducible EDA frameworks and trustworthy analytics pipelines for research and industry.</p>
+            <a href="https://data-science-salon-podcast.simplecast.com/episodes/reproducible-eda-building-trustworthy-analytics-pipelines-nKzHV0Vh" target="_blank" rel="noopener noreferrer" class="service-card-cta">Listen <span class="cta-arrow">→</span></a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <script is:inline>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.project-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    document.querySelectorAll('.portfolio-section-nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+</Layout>

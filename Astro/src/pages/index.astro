@@ -1,0 +1,457 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Data Science Dynamics | Data Science Consulting">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Transform Data into <span class="gradient-text">Actionable Intelligence</span></h1>
+        <p>Expert data science consulting delivering machine learning solutions, predictive modeling, and advanced analytics across healthcare, research, and data-driven organizations.</p>
+        <div class="cta-buttons">
+          <a href="#contact" class="btn btn-primary">Start a Project</a>
+          <a href="#services" class="btn btn-secondary">Explore Services</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-number">35+</div>
+            <div class="hero-stat-label">Years Combined Experience</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">5</div>
+            <div class="hero-stat-label">Academic Institutions</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">10+</div>
+            <div class="hero-stat-label">Models Deployed</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">10+</div>
+            <div class="hero-stat-label">Publications</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <div class="services-wrap" id="services">
+    <section class="services">
+      <div class="section-header">
+        <span class="section-tag">What We Do</span>
+        <h2>Specialized Data Science Services</h2>
+        <p>Comprehensive solutions tailored to your analytical needs, from predictive modeling to custom tool development</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" onclick="openModal('ml')">
+          <h3>Machine Learning Applications</h3>
+          <p>Custom ML solutions using ensemble methods, neural networks, and advanced algorithms. Specializing in classification, regression, and time-series forecasting with comprehensive model evaluation.</p>
+          <span class="service-card-cta">Explore <span class="cta-arrow">→</span></span>
+        </div>
+        <div class="service-card" onclick="openModal('eda')">
+          <h3>Exploratory Data Analysis</h3>
+          <p>In-depth statistical analysis and visualization to uncover patterns, relationships, and insights. Author of production-grade EDA toolkits used across research institutions.</p>
+          <span class="service-card-cta">Explore <span class="cta-arrow">→</span></span>
+        </div>
+        <div class="service-card" onclick="openModal('clinical')">
+          <h3>Clinical Prediction Modeling</h3>
+          <p>Develop sophisticated models for healthcare outcomes including kidney disease risk estimation, ICU mortality prediction, and patient stratification tools validated against clinical standards.</p>
+          <span class="service-card-cta">Explore <span class="cta-arrow">→</span></span>
+        </div>
+        <div class="service-card" onclick="openModal('tools')">
+          <h3>Custom Tool Development</h3>
+          <p>Build proprietary Python libraries and analytical frameworks. Experience creating model diagnostics tools, SHAP explainers, and automated evaluation pipelines for reproducible research.</p>
+          <span class="service-card-cta">Explore <span class="cta-arrow">→</span></span>
+        </div>
+        <div class="service-card" onclick="openModal('training')">
+          <h3>Training & Education</h3>
+          <p>Corporate workshops and academic instruction in data science fundamentals, machine learning techniques, and best practices. Curriculum development for university-level courses.</p>
+          <span class="service-card-cta">Explore <span class="cta-arrow">→</span></span>
+        </div>
+        <div class="service-card" onclick="openModal('research')">
+          <h3>Research Collaboration</h3>
+          <p>Partner on academic research projects with emphasis on healthcare analytics, clinical decision support systems, and methodological innovation. Co-authorship and publication support.</p>
+          <span class="service-card-cta">Explore <span class="cta-arrow">→</span></span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Impact -->
+  <section class="impact" id="impact">
+    <div class="impact-content">
+      <h2>Selected Work & Community Impact</h2>
+    </div>
+    <div class="marquee-viewport">
+      <div class="marquee-track">
+        <!-- primary set -->
+        <div class="logo-item">
+          <a href="https://lshpaner.github.io/eda_toolkit_docs" target="_blank" rel="noopener noreferrer">
+            <img src="/eda_toolkit_logo.svg" alt="EDA Toolkit" />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a href="https://youtu.be/Trxoq2B8E9w?si=4GdxsaXBQv0KTldj" target="_blank" rel="noopener noreferrer">
+            <img src="/BIT25_logo.png" alt="BIT25 Logo" />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a href="https://datasciencedynamics.com/files/Reproducible_Exploratory_Data_Analysis_Frameworks_for_Pediatric_and_Lifespan_Clinical_Research.pdf" target="_blank" rel="noopener noreferrer">
+            <img src="/CHOC_Best_Poster_Badge.svg" alt="CHOC Best Poster Award 2026" />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a href="https://jupytercon2025.sched.com/event/28H3P/eda-toolkit-tutorial-on-streamlining-exploratory-data-analysis-in-jupyter-leon-shpaner-ucla-health-oscar-gil-university-of-california-riverside" target="_blank" rel="noopener noreferrer">
+            <img src="/jupytercon-speaker-badge.png" alt="JupyterCon 2025 Speaker" />
+          </a>
+        </div>
+        <div class="logo-item">
+          <a href="https://data-science-salon-podcast.simplecast.com/episodes/reproducible-eda-building-trustworthy-analytics-pipelines-nKzHV0Vh" target="_blank" rel="noopener noreferrer">
+            <img src="/DSS-PODCAST-LOGO.png" alt="DSS Podcast" />
+          </a>
+        </div>
+        <!-- duplicate set for seamless loop -->
+        <div class="logo-item" aria-hidden="true">
+          <a href="https://lshpaner.github.io/eda_toolkit_docs" target="_blank" rel="noopener noreferrer" tabindex="-1">
+            <img src="/eda_toolkit_logo.svg" alt="" />
+          </a>
+        </div>
+        <div class="logo-item" aria-hidden="true">
+          <a href="https://youtu.be/Trxoq2B8E9w?si=4GdxsaXBQv0KTldj" target="_blank" rel="noopener noreferrer" tabindex="-1">
+            <img src="/BIT25_logo.png" alt="" />
+          </a>
+        </div>
+        <div class="logo-item" aria-hidden="true">
+          <a href="https://datasciencedynamics.com/files/Reproducible_Exploratory_Data_Analysis_Frameworks_for_Pediatric_and_Lifespan_Clinical_Research.pdf" target="_blank" rel="noopener noreferrer" tabindex="-1">
+            <img src="/CHOC_Best_Poster_Badge.svg" alt="" />
+          </a>
+        </div>
+        <div class="logo-item" aria-hidden="true">
+          <a href="https://jupytercon2025.sched.com/event/28H3P/eda-toolkit-tutorial-on-streamlining-exploratory-data-analysis-in-jupyter-leon-shpaner-ucla-health-oscar-gil-university-of-california-riverside" target="_blank" rel="noopener noreferrer" tabindex="-1">
+            <img src="/jupytercon-speaker-badge.png" alt="" />
+          </a>
+        </div>
+        <div class="logo-item" aria-hidden="true">
+          <a href="https://data-science-salon-podcast.simplecast.com/episodes/reproducible-eda-building-trustworthy-analytics-pipelines-nKzHV0Vh" target="_blank" rel="noopener noreferrer" tabindex="-1">
+            <img src="/DSS-PODCAST-LOGO.png" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-content">
+      <div class="section-header">
+        <span class="section-tag">Who We Are</span>
+        <h2>Expert Partnership for Data-Driven Solutions</h2>
+      </div>
+      <div class="about-team">
+        <div class="team-member">
+          <img src="/photos/leonshpaner.jpg" alt="Leon Shpaner" class="team-photo" />
+          <div class="team-bio">
+            <h3><a href="https://www.leonshpaner.com" target="_blank" rel="noopener noreferrer">Leon Shpaner, M.S.</a></h3>
+            <p>is a Data Scientist at UCLA Health with over 15 years of experience across healthcare, financial services, and education. He serves as an adjunct professor at the University of San Diego, where he teaches statistics and machine learning in the M.S. in Applied Artificial Intelligence program. He has contributed to clinical prediction research, co-developed a production-grade EDA toolkit contracted for publication with Taylor & Francis, and presented at JupyterCon 2025.</p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="/photos/Oscar_LinkedIn_Pic.jpeg" alt="Oscar Gil" class="team-photo" />
+          <div class="team-bio">
+            <h3><a href="https://oscargildata.com" target="_blank" rel="noopener noreferrer">Oscar Gil, M.S.</a></h3>
+            <p>is a Data Scientist at the University of California, Riverside, with over ten years of experience in the education data management industry. He excels in data warehousing, analytics, machine learning, SQL, Python, R, and report authoring, and holds an M.S. in Applied Data Science from the University of San Diego. He has co-developed analytical tools and pipelines deployed in research and institutional settings, and presented alongside Leon at JupyterCon 2025.</p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="/photos/Ebrahim_Tarshizi.jpg" alt="Ebrahim Tarshizi" class="team-photo photo-offset" />
+          <div class="team-bio">
+            <h3><a href="https://onlinedegrees.sandiego.edu/faculty/ebrahim-k-tarshizi/" target="_blank" rel="noopener noreferrer">Ebrahim Tarshizi, PhD</a></h3>
+            <p>is a Professor of Practice and Academic Director of the Applied Data Science (MS-ADS) and Applied Artificial Intelligence (MS-AAI) programs at the University of San Diego's Shiley-Marcos School of Engineering. A former senior technical advisor for the CDC's National Institute for Occupational Safety and Health (NIOSH) and visiting scholar at UCSD's San Diego Supercomputer Center, he holds a PhD in Geo-Engineering from the University of Nevada, Reno, an MSc in Data Science from Michigan Tech, and an MBA from UNR. He has published widely in international journals and received numerous university, national, and international awards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <div class="contact-wrap" id="contact">
+    <div class="section-header">
+      <span class="section-tag">Get In Touch</span>
+      <h2>Let's Discuss Your Project</h2>
+      <p>Ready to transform your data into actionable insights? Reach out to start the conversation</p>
+    </div>
+    <section class="contact">
+    <div class="contact-container">
+      <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p>We're here to help with your data science needs. Whether you're looking for consulting services, training programs, or research collaboration, we'd love to hear from you.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-10 5L2 7"/>
+              </svg>
+            </div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Email</div>
+              <a href="mailto:info@datasciencedynamics.com">info@datasciencedynamics.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Location</div>
+              <div class="contact-item-value">Southern California</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Response Time</div>
+              <div class="contact-item-value">Within 48 hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="b7b5c224-d9d7-4f76-819b-172bf09bba70" />
+          <input type="hidden" name="subject" value="New Contact Form Submission from Data Science Dynamics" />
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+    </section>
+  </div>
+
+  <!-- Service Modals -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">&#10005;</button>
+      <div class="modal-body">
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+        <div class="modal-section-title">What We Offer</div>
+        <ul id="modalOffers"></ul>
+        <div class="modal-section-title">Why Choose Us</div>
+        <ul id="modalWhy"></ul>
+        <div class="modal-cta">
+          <a href="#contact" class="btn btn-primary" onclick="closeModal()">Let's Talk</a>
+          <span>Get a free consultation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  const modalData = {
+    ml: {
+
+      title: 'Machine Learning Applications',
+      desc: 'We build custom ML pipelines from the ground up, from feature engineering and model selection through to evaluation and production deployment. Our approach prioritizes accuracy, interpretability, and maintainability.',
+      offers: [
+        'Ensemble methods (XGBoost, Random Forest, stacking) tuned to your problem',
+        'Deep neural network architectures for complex tabular and structured data',
+        'Automated hyperparameter optimization with systematic tuning frameworks',
+        'Classification, regression, and time-series forecasting solutions',
+        'MLflow experiment tracking and reproducible pipeline design'
+      ],
+      why: [
+        'Benchmarked deep learning against gradient boosting to identify the right approach',
+        'Experience with automated ML tooling (model_tuner library)',
+        'Focus on beating naive baselines with rigorous evaluation',
+        'Scalable architectures that grow with your data'
+      ]
+    },
+    eda: {
+      title: 'Exploratory Data Analysis',
+      desc: 'Before any model is built, the data needs to be understood. Our EDA services uncover patterns, detect anomalies, assess distributions, and produce publication-quality visualizations that drive informed decision-making.',
+      offers: [
+        'Comprehensive statistical summaries and distribution analysis',
+        'Correlation analysis and multivariate relationship exploration',
+        'Anomaly and outlier detection with contextual interpretation',
+        'Interactive dashboards and publication-ready visualizations',
+        'Data quality audits and cleaning recommendations'
+      ],
+      why: [
+        'Author of a production-grade EDA toolkit (contracted for Taylor & Francis publication)',
+        'Background in building interactive visualization websites',
+        'Expertise in bridging raw data and actionable business insight',
+        'Rigorous methodology grounded in statistical best practices'
+      ]
+    },
+    clinical: {
+      title: 'Clinical Prediction Modeling',
+      desc: 'We develop, validate, and deploy predictive models tailored to clinical decision-making. From early disease detection to mortality risk stratification, our models are built with rigorous statistical methodology and real-world applicability in mind.',
+      offers: [
+        'Kidney failure risk estimation (KFRE) models validated against clinical benchmarks',
+        'ICU mortality prediction with interpretable output for clinicians',
+        'Patient stratification and risk scoring systems',
+        'Survival analysis and time-to-event modeling',
+        'Model validation using temporal holdout and cross-institutional testing'
+      ],
+      why: [
+        'Direct experience working within top academic medical centers',
+        'Published research in clinical prediction and urology outcomes',
+        'Models designed for transparency: clinicians understand the output',
+        'End-to-end delivery from exploratory analysis to deployment-ready tools'
+      ]
+    },
+    tools: {
+      title: 'Custom Tool Development',
+      desc: 'We design and build Python libraries, analytical frameworks, and automated pipelines specifically for your workflows. Our tools are open-source ready, well-documented, and built to production standards.',
+      offers: [
+        'Custom Python packages with comprehensive test suites (80%+ coverage)',
+        'Model diagnostics tools with residual analysis and LOWESS smoothing',
+        'SHAP-based explainability integration for any sklearn-compatible model',
+        'Automated evaluation pipelines (ROC curves, DeLong tests, calibration)',
+        'MLflow integration for experiment tracking and model versioning'
+      ],
+      why: [
+        'Built model_metrics: a full-featured model evaluation library',
+        'Refactored 3,800+ line codebases into clean modular architectures',
+        'Open-source mindset: documented, tested, and reusable',
+        'Tools designed for researchers and practitioners alike'
+      ]
+    },
+    training: {
+      title: 'Training & Education',
+      desc: 'We deliver hands-on training programs and workshops that bridge the gap between theory and practice. Whether for corporate teams or academic settings, our curriculum is built around real-world projects and industry-standard tools.',
+      offers: [
+        'Data science fundamentals: from statistics to machine learning',
+        'Hands-on Python workshops (pandas, scikit-learn, visualization)',
+        'Corporate training on predictive modeling and analytics',
+        'University-level course design and curriculum development',
+        'JupyterCon-style tutorial sessions and conference workshops'
+      ],
+      why: [
+        'Active adjunct professors at top universities',
+        'Teaching experience across data analytics, statistics, and ML',
+        'Curriculum grounded in current industry practice, not just textbooks',
+        'Engaging, project-based learning approach'
+      ]
+    },
+    research: {
+      title: 'Research Collaboration',
+      desc: 'We partner with academic institutions and research teams to tackle complex analytical challenges. From study design through publication, we bring methodological rigor and machine learning expertise to collaborative projects.',
+      offers: [
+        'Co-design of analytical frameworks for clinical and social science studies',
+        'Machine learning applied to conflict data, epidemiology, and public health',
+        'Temporal validation strategies for time-sensitive research questions',
+        'Statistical methodology consulting (survival analysis, causal inference)',
+        'Co-authorship and support through the full publication process'
+      ],
+      why: [
+        'Active publications in BMC Urology and ML research journals',
+        'Experience with ACLED conflict data and geospatial analysis',
+        'Rigorous approach to temporal validation and avoiding data leakage',
+        'Collaborative mindset: we integrate seamlessly with your team'
+      ]
+    }
+  };
+
+  function openModal(key) {
+    const data = modalData[key];
+    document.getElementById('modalTitle').textContent = data.title;
+    document.getElementById('modalDesc').textContent = data.desc;
+    document.getElementById('modalOffers').innerHTML = data.offers.map(item => `<li>${item}</li>`).join('');
+    document.getElementById('modalWhy').innerHTML = data.why.map(item => `<li>${item}</li>`).join('');
+    document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeModal();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.service-card, .stat-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Animated counters
+  function animateCounter(element, target, suffix, duration = 2000) {
+    const increment = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = target + suffix;
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current) + suffix;
+      }
+    }, 16);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+        entry.target.classList.add('counted');
+        const text = entry.target.textContent;
+        const hasPlus = text.includes('+');
+        const number = parseInt(text.replace('+', ''));
+        animateCounter(entry.target, number, hasPlus ? '+' : '');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.hero-stat-number').forEach(stat => statsObserver.observe(stat));
+</script>

@@ -1,0 +1,176 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Data Science Dynamics offers expert data science consulting specializing in clinical prediction modeling, machine learning, and advanced analytics for healthcare and research institutions.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"
+    ></script>
+  </head>
+  <body>
+    <div id="particles-js"></div>
+
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <a href="/">
+            <img src="/data_science_dynamics_logo.svg" alt="Data Science Dynamics" style="max-width: 300px;" />
+          </a>
+        </div>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+        <ul class="nav-links">
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#impact">Impact</a></li>
+          <li><a href="/portfolio">Portfolio</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <slot />
+
+    <footer>
+      <div class="footer-content">
+        <div>
+          <img
+            src="/data_science_dynamics_logo_white.svg"
+            alt="Data Science Dynamics"
+            class="footer-logo"
+            style="max-width: 300px; margin-bottom: 15px;"
+          />
+          <p class="footer-about">
+            Transforming complex data challenges into actionable intelligence through expert consulting, advanced analytics, and collaborative research.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/#services">Machine Learning</a></li>
+            <li><a href="/#services">Data Analysis</a></li>
+            <li><a href="/#services">Clinical Modeling</a></li>
+            <li><a href="/#services">Custom Tools</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/#about">About Us</a></li>
+            <li><a href="/#contact">Contact</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Data Science Dynamics. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script is:inline>
+      // Mobile nav toggle
+      const toggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      const navItems = document.querySelectorAll('.nav-links a');
+
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('active');
+      });
+
+      navItems.forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('active'));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (
+          navLinks.classList.contains('active') &&
+          !navLinks.contains(e.target) &&
+          !toggle.contains(e.target)
+        ) {
+          navLinks.classList.remove('active');
+        }
+      });
+
+      // Particles
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 45, density: { enable: true, value_area: 900 } },
+          color: { value: ['#185FA5', '#2b7fd4', '#4a9fe0'] },
+          shape: { type: 'circle' },
+          opacity: {
+            value: 0.75,
+            random: true,
+            anim: { enable: true, speed: 0.8, opacity_min: 0.25, sync: false }
+          },
+          size: {
+            value: 5,
+            random: true,
+            anim: { enable: true, speed: 1.5, size_min: 1.5, sync: false }
+          },
+          line_linked: {
+            enable: true,
+            distance: 130,
+            color: '#185FA5',
+            opacity: 0.55,
+            width: 1.2
+          },
+          move: {
+            enable: true,
+            speed: 1.0,
+            direction: 'none',
+            random: true,
+            straight: false,
+            out_mode: 'out',
+            bounce: false
+          }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            hover: { enable: true, mode: 'grab' },
+            click: { enable: true, mode: 'push' },
+            resize: true
+          },
+          modes: {
+            grab: { distance: 180, line_linked: { opacity: 0.5 } },
+            push: { particles_nb: 2 }
+          }
+        },
+        retina_detect: true
+      });
+
+      // Scroll-aware navbar
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 80);
+      }, { passive: true });
+
+      // Prevent right-click / drag on images
+      document.addEventListener('contextmenu', (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+      document.addEventListener('dragstart', (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+    </script>
+  </body>
+</html>
