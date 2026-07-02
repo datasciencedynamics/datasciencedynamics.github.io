@@ -584,7 +584,7 @@ nav a:hover::after {
 }
 
 .modal ul li::before {
-    content: '→';
+    content: '';
     position: absolute;
     left: 0;
     color: var(--accent);
