@@ -1,0 +1,391 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// -----------------------------------------------------------------
+// One object per photo. Drop the image in public/photos/events/ and
+// point `src` at it. The cards, filter chips, and lightbox all build
+// from this list. Chips only appear once you have more than one album.
+// -----------------------------------------------------------------
+const photos = [
+  {
+    src: "/photos/events/5-PLDSC2026_Poster Awards-5.jpg",
+    album: "CHOC 2026",
+    caption: "Best Poster Award, Pediatric and Lifespan Data Science Conference 2026",
+  },
+  {
+    src: "/photos/events/IMG_0716.jpg",
+    album: "USD Commencement 2026",
+    caption: "With Dr. Ebrahim Tarshizi at the University of San Diego MS in Applied Data Science and MS in Applied Artificial Intelligence commencement, 2026",
+  },
+];
+
+const albums = ["All", ...new Set(photos.map((p) => p.album))];
+const showFilters = albums.length > 2;
+---
+
+<Layout title="Event Gallery | Data Science Dynamics">
+
+  <section class="gallery-page">
+    <div class="gallery-hero">
+      <!-- <span class="section-tag">Out in the Field</span> -->
+      <h1>Event Gallery</h1>
+      <p>Talks, conferences, and awards from the Data Science Dynamics team. Click any photo to view it full size.</p>
+    </div>
+
+    {showFilters && (
+      <div class="gallery-filters">
+        {albums.map((album, i) => (
+          <button class:list={["filter-chip", { active: i === 0 }]} data-album={album}>{album}</button>
+        ))}
+      </div>
+    )}
+
+    <div class="gallery" id="gallery">
+      {photos.map((p, i) => (
+        <figure
+          class="gallery-item"
+          data-album={p.album}
+          data-src={p.src}
+          data-caption={p.caption}
+          style={`animation-delay:${i * 0.04}s`}
+        >
+          <img src={p.src} alt={p.caption} loading="lazy" />
+          <figcaption class="caption">
+            <span class="cap-album">{p.album}</span>
+            <span class="cap-title">{p.caption}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lbClose" aria-label="Close">&#10005;</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+    <div class="lightbox-content">
+      <img id="lbImg" src="" alt="" />
+      <div class="lightbox-meta">
+        <div class="lb-album" id="lbAlbum"></div>
+        <div class="lb-title" id="lbTitle"></div>
+        <div class="lb-counter" id="lbCounter"></div>
+      </div>
+    </div>
+  </div>
+
+</Layout>
+
+<style>
+  .gallery-page {
+    margin-top: 120px;
+    padding: 4rem 2rem 2rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---- Header ---- */
+  .gallery-hero { text-align: center; margin-bottom: 2.5rem; }
+
+  .section-tag {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(0, 212, 170, 0.1);
+    color: var(--accent-dark);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+    .gallery-hero h1 {
+    font-family: var(--font-heading);   /* was: Helvetica, Arial, sans-serif */
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    }
+
+  .gallery-hero p { font-size: 1.2rem; color: var(--text-light); max-width: 700px; margin: 0 auto; }
+
+  /* ---- Filter chips ---- */
+  .gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .filter-chip {
+    padding: 0.6rem 1.4rem;
+    border: 2px solid rgba(10, 37, 64, 0.12);
+    background: transparent;
+    color: var(--primary);
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-chip:hover { border-color: var(--accent); color: var(--accent-dark); }
+
+  .filter-chip.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--primary);
+    box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
+  }
+
+  /* ---- Adaptive centered layout ----
+     One photo sits centered as a featured card. Add more and they wrap
+     into centered rows. Every image keeps its native aspect ratio. ---- */
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .gallery-item {
+    flex: 0 1 420px;
+    max-width: 480px;
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: itemIn 0.45s ease both;
+  }
+
+  @keyframes itemIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .gallery-item:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14); }
+
+  .gallery-item img { width: 100%; display: block; }
+
+  .gallery-item .caption {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.25rem;
+    color: #fff;
+    background: linear-gradient(to top, rgba(10, 37, 64, 0.85) 0%, rgba(10, 37, 64, 0) 55%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .gallery-item:hover .caption { opacity: 1; }
+
+  .caption .cap-album {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .caption .cap-title { font-size: 1rem; font-weight: 600; line-height: 1.35; }
+
+  /* ---- Lightbox ---- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 37, 64, 0.92);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    padding: 2rem;
+  }
+
+  .lightbox.active { opacity: 1; visibility: visible; }
+
+  .lightbox-content {
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0.96);
+    transition: transform 0.35s ease;
+  }
+
+  .lightbox.active .lightbox-content { transform: scale(1); }
+
+  .lightbox-content img {
+    max-width: 100%;
+    max-height: 72vh;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  }
+
+  .lightbox-meta { text-align: center; color: #fff; margin-top: 1.25rem; }
+
+  .lightbox-meta .lb-album {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .lightbox-meta .lb-title { font-size: 1.15rem; font-weight: 500; }
+  .lightbox-meta .lb-counter { font-size: 0.85rem; color: rgba(255, 255, 255, 0.55); margin-top: 0.5rem; }
+
+  .lb-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 54px;
+    height: 54px;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease;
+  }
+
+  .lb-btn:hover { background: var(--accent); color: var(--primary); }
+  .lb-prev { left: 2rem; }
+  .lb-next { right: 2rem; }
+
+  .lb-close {
+    position: fixed;
+    top: 1.75rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.25s ease;
+  }
+
+  .lb-close:hover { background: rgba(255, 255, 255, 0.25); }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .gallery-page { margin-top: 140px; padding: 3rem 1.5rem 2rem; }
+    .gallery-hero h1 { font-size: 2.2rem; }
+  }
+
+  @media (max-width: 640px) {
+    .gallery-item { flex: 0 1 100%; max-width: 100%; }
+    .lb-prev { left: 0.75rem; }
+    .lb-next { right: 0.75rem; }
+  }
+</style>
+
+<script is:inline>
+  // Cards are rendered by Astro above. This script only handles
+  // filtering and the lightbox, reading data straight off the DOM.
+  const items = Array.from(document.querySelectorAll(".gallery-item"));
+  const chips = Array.from(document.querySelectorAll(".filter-chip"));
+  let visible = items.slice();  // items in the current filter (drives lightbox nav)
+  let lbIndex = 0;
+
+  // ---- Filtering ----
+  function applyFilter(album) {
+    visible = [];
+    items.forEach((item) => {
+      const match = album === "All" || item.dataset.album === album;
+      item.style.display = match ? "" : "none";
+      if (match) visible.push(item);
+    });
+  }
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chips.forEach((c) => c.classList.remove("active"));
+      chip.classList.add("active");
+      applyFilter(chip.dataset.album);
+    });
+  });
+
+  // ---- Lightbox ----
+  const lightbox = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lbImg");
+  const lbAlbum = document.getElementById("lbAlbum");
+  const lbTitle = document.getElementById("lbTitle");
+  const lbCounter = document.getElementById("lbCounter");
+  const lbPrev = document.getElementById("lbPrev");
+  const lbNext = document.getElementById("lbNext");
+
+  items.forEach((item) => {
+    item.addEventListener("click", () => {
+      const idx = visible.indexOf(item);
+      if (idx > -1) openLightbox(idx);
+    });
+  });
+
+  function openLightbox(idx) {
+    lbIndex = idx;
+    updateLightbox();
+    lightbox.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function updateLightbox() {
+    const el = visible[lbIndex];
+    lbImg.src = el.dataset.src;
+    lbImg.alt = el.dataset.caption;
+    lbAlbum.textContent = el.dataset.album;
+    lbTitle.textContent = el.dataset.caption;
+
+    const single = visible.length <= 1;
+    lbCounter.textContent = single ? "" : `${lbIndex + 1} / ${visible.length}`;
+    lbPrev.style.display = single ? "none" : "flex";
+    lbNext.style.display = single ? "none" : "flex";
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  function nav(dir) {
+    lbIndex = (lbIndex + dir + visible.length) % visible.length;
+    updateLightbox();
+  }
+
+  document.getElementById("lbClose").addEventListener("click", closeLightbox);
+  lbPrev.addEventListener("click", () => nav(-1));
+  lbNext.addEventListener("click", () => nav(1));
+  lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox.classList.contains("active")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowRight") nav(1);
+    if (e.key === "ArrowLeft") nav(-1);
+  });
+</script>
