@@ -41,8 +41,8 @@
 <line x1="126" y1="95" x2="166" y2="106" stroke="#185FA5" stroke-width="1.2" opacity="0.55"/>
 <circle cx="166" cy="106" r="2.5" fill="#185FA5" opacity="0.55"/>
 
-<text x="172" y="68" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#1a1a1a" letter-spacing="5">DATA</text>
+<text x="172" y="68" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#185FA5" letter-spacing="5">DATA</text>
 <text x="172" y="98" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#185FA5" letter-spacing="5">SCIENCE</text>
-<text x="172" y="128" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#1a1a1a" letter-spacing="5">DYNAMICS</text>
+<text x="172" y="128" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#185FA5" letter-spacing="5">DYNAMICS</text>
 
 </svg>
