@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 export interface Props {
   title: string;
@@ -22,7 +22,10 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <script
       is:inline
       src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"
@@ -35,21 +38,25 @@ const {
       <nav class="navbar">
         <div class="logo">
           <a href="/">
-            <img src="/data_science_dynamics_logo.svg" alt="Data Science Dynamics" style="max-width: 300px;" />
+            <img
+              src="/data_science_dynamics_logo.svg"
+              alt="Data Science Dynamics"
+              style="max-width: 300px;"
+            />
           </a>
         </div>
 
         <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
 
-      <ul class="nav-links">
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#impact">Impact</a></li>
-        <li><a href="/portfolio">Portfolio</a></li>
-        <li><a href="/events">Events</a></li>
-        <li><a href="https://apps.datasciencedynamics.com">Apps</a></li>
-        <li><a href="/#about">About</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
+        <ul class="nav-links">
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#impact">Impact</a></li>
+          <li><a href="/portfolio">Portfolio</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="https://apps.datasciencedynamics.com">Apps</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
       </nav>
     </header>
 
@@ -65,7 +72,9 @@ const {
             style="max-width: 300px; margin-bottom: 15px;"
           />
           <p class="footer-about">
-            Transforming complex data challenges into actionable intelligence through expert consulting, advanced analytics, and collaborative research.
+            Transforming complex data challenges into actionable intelligence
+            through expert consulting, advanced analytics, and collaborative
+            research.
           </p>
         </div>
         <div class="footer-section">
@@ -73,7 +82,6 @@ const {
           <ul>
             <li><a href="/#services">Machine Learning</a></li>
             <li><a href="/#services">Data Analysis</a></li>
-            <li><a href="/#services">Clinical Modeling</a></li>
             <li><a href="/#services">Custom Tools</a></li>
           </ul>
         </div>
@@ -94,86 +102,96 @@ const {
 
     <script is:inline>
       // Mobile nav toggle
-      const toggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      const navItems = document.querySelectorAll('.nav-links a');
+      const toggle = document.querySelector(".nav-toggle");
+      const navLinks = document.querySelector(".nav-links");
+      const navItems = document.querySelectorAll(".nav-links a");
 
-      toggle.addEventListener('click', (e) => {
+      toggle.addEventListener("click", (e) => {
         e.stopPropagation();
-        navLinks.classList.toggle('active');
+        navLinks.classList.toggle("active");
       });
 
-      navItems.forEach(link => {
-        link.addEventListener('click', () => navLinks.classList.remove('active'));
+      navItems.forEach((link) => {
+        link.addEventListener("click", () =>
+          navLinks.classList.remove("active"),
+        );
       });
 
-      document.addEventListener('click', (e) => {
+      document.addEventListener("click", (e) => {
         if (
-          navLinks.classList.contains('active') &&
+          navLinks.classList.contains("active") &&
           !navLinks.contains(e.target) &&
           !toggle.contains(e.target)
         ) {
-          navLinks.classList.remove('active');
+          navLinks.classList.remove("active");
         }
       });
 
       // Particles
-      particlesJS('particles-js', {
+      particlesJS("particles-js", {
         particles: {
           number: { value: 45, density: { enable: true, value_area: 900 } },
-          color: { value: ['#185FA5', '#2b7fd4', '#4a9fe0'] },
-          shape: { type: 'circle' },
+          color: { value: ["#185FA5", "#2b7fd4", "#4a9fe0"] },
+          shape: { type: "circle" },
           opacity: {
             value: 0.75,
             random: true,
-            anim: { enable: true, speed: 0.8, opacity_min: 0.25, sync: false }
+            anim: { enable: true, speed: 0.8, opacity_min: 0.25, sync: false },
           },
           size: {
             value: 5,
             random: true,
-            anim: { enable: true, speed: 1.5, size_min: 1.5, sync: false }
+            anim: { enable: true, speed: 1.5, size_min: 1.5, sync: false },
           },
           line_linked: {
             enable: true,
             distance: 130,
-            color: '#185FA5',
+            color: "#185FA5",
             opacity: 0.55,
-            width: 1.2
+            width: 1.2,
           },
           move: {
             enable: true,
             speed: 1.0,
-            direction: 'none',
+            direction: "none",
             random: true,
             straight: false,
-            out_mode: 'out',
-            bounce: false
-          }
+            out_mode: "out",
+            bounce: false,
+          },
         },
         interactivity: {
-          detect_on: 'canvas',
+          detect_on: "canvas",
           events: {
-            hover: { enable: true, mode: 'grab' },
-            click: { enable: true, mode: 'push' },
-            resize: true
+            hover: { enable: true, mode: "grab" },
+            click: { enable: true, mode: "push" },
+            resize: true,
           },
           modes: {
             grab: { distance: 180, line_linked: { opacity: 0.5 } },
-            push: { particles_nb: 2 }
-          }
+            push: { particles_nb: 2 },
+          },
         },
-        retina_detect: true
+        retina_detect: true,
       });
 
       // Scroll-aware navbar
-      const header = document.querySelector('header');
-      window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 80);
-      }, { passive: true });
+      const header = document.querySelector("header");
+      window.addEventListener(
+        "scroll",
+        () => {
+          header.classList.toggle("scrolled", window.scrollY > 80);
+        },
+        { passive: true },
+      );
 
       // Prevent right-click / drag on images
-      document.addEventListener('contextmenu', (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-      document.addEventListener('dragstart', (e) => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+      document.addEventListener("contextmenu", (e) => {
+        if (e.target.tagName === "IMG") e.preventDefault();
+      });
+      document.addEventListener("dragstart", (e) => {
+        if (e.target.tagName === "IMG") e.preventDefault();
+      });
     </script>
   </body>
 </html>

@@ -14,8 +14,7 @@ import Layout from "../layouts/Layout.astro";
         </h1>
         <p>
           Expert data science consulting delivering machine learning solutions,
-          predictive modeling, and advanced analytics across healthcare,
-          research, and data-driven organizations.
+          predictive modeling, and advanced analytics.
         </p>
         <div class="cta-buttons">
           <a href="#contact" class="btn btn-primary">Start a Project</a>
@@ -79,12 +78,12 @@ import Layout from "../layouts/Layout.astro";
             >Explore <span class="cta-arrow"></span></span
           >
         </div>
-        <div class="service-card" onclick="openModal('clinical')">
-          <h3>Clinical Prediction Modeling</h3>
+        <div class="service-card" onclick="openModal('dataeng')">
+          <h3>Data Engineering & Business Intelligence</h3>
           <p>
-            Develop sophisticated models for healthcare outcomes including
-            kidney disease risk estimation, ICU mortality prediction, and
-            patient stratification tools validated against clinical standards.
+            Turn scattered, messy data into clean pipelines and dashboards
+            people actually use. ETL, data warehousing, and reporting built for
+            reliability, so the numbers are trustworthy and always current.
           </p>
           <span class="service-card-cta"
             >Explore <span class="cta-arrow"></span></span
@@ -115,9 +114,8 @@ import Layout from "../layouts/Layout.astro";
         <div class="service-card" onclick="openModal('research')">
           <h3>Research Collaboration</h3>
           <p>
-            Partner on academic research projects with emphasis on healthcare
-            analytics, clinical decision support systems, and methodological
-            innovation. Co-authorship and publication support.
+            Partner on research projects with emphasis on methodological
+            innovation and applied machine learning.
           </p>
           <span class="service-card-cta"
             >Explore <span class="cta-arrow"></span></span
@@ -151,18 +149,6 @@ import Layout from "../layouts/Layout.astro";
             rel="noopener noreferrer"
           >
             <img src="/BIT25_logo.png" alt="BIT25 Logo" />
-          </a>
-        </div>
-        <div class="logo-item">
-          <a
-            href="https://datasciencedynamics.com/choc-2026/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="/CHOC_Best_Poster_Badge.svg"
-              alt="CHOC Best Poster Award 2026"
-            />
           </a>
         </div>
         <div class="logo-item">
@@ -205,16 +191,6 @@ import Layout from "../layouts/Layout.astro";
             tabindex="-1"
           >
             <img src="/BIT25_logo.png" alt="" />
-          </a>
-        </div>
-        <div class="logo-item" aria-hidden="true">
-          <a
-            href="https://datasciencedynamics.com/files/Reproducible_Exploratory_Data_Analysis_Frameworks_for_Pediatric_and_Lifespan_Clinical_Research.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            tabindex="-1"
-          >
-            <img src="/CHOC_Best_Poster_Badge.svg" alt="" />
           </a>
         </div>
         <div class="logo-item" aria-hidden="true">
@@ -617,21 +593,21 @@ import Layout from "../layouts/Layout.astro";
         "Rigorous methodology grounded in statistical best practices",
       ],
     },
-    clinical: {
-      title: "Clinical Prediction Modeling",
-      desc: "We develop, validate, and deploy predictive models tailored to clinical decision-making. From early disease detection to mortality risk stratification, our models are built with rigorous statistical methodology and real-world applicability in mind.",
+    dataeng: {
+      title: "Data Engineering & Business Intelligence",
+      desc: "Good analysis starts with clean, reliable data. We build the pipelines, warehouses, and dashboards that move your data from raw and scattered to structured, trustworthy, and ready to act on.",
       offers: [
-        "Kidney failure risk estimation (KFRE) models validated against clinical benchmarks",
-        "ICU mortality prediction with interpretable output for clinicians",
-        "Patient stratification and risk scoring systems",
-        "Survival analysis and time-to-event modeling",
-        "Temporal holdout validation to guard against data leakage",
+        "ETL and ELT pipelines that ingest, clean, and transform data on a schedule",
+        "Data warehouse design and modeling for analytics at scale",
+        "Interactive Tableau and BI dashboards built around the decisions you actually make",
+        "Automated data-quality checks and validation, so errors surface before they reach a report",
+        "SQL, Python, and R workflows documented and built to hand off",
       ],
       why: [
-        "Direct experience inside a top academic medical center",
-        "Published research in clinical prediction and urology outcomes",
-        "Models designed for transparency: clinicians understand the output",
-        "End-to-end delivery from exploratory analysis to deployment-ready tools",
+        "Years of hands-on experience in data warehousing and large-scale data management",
+        "Production BI and reporting practice: Tableau dashboards, ETL workflows, and validation pipelines",
+        "Reproducible, well-documented builds you can maintain after we leave",
+        "The same engineering rigor we bring to our published research tooling",
       ],
     },
     tools: {
@@ -672,14 +648,14 @@ import Layout from "../layouts/Layout.astro";
       title: "Research Collaboration",
       desc: "We partner with academic institutions and research teams to tackle complex analytical challenges. From study design through publication, we bring methodological rigor and machine learning expertise to collaborative projects.",
       offers: [
-        "Co-design of analytical frameworks for clinical and social science studies",
-        "Machine learning applied to conflict data, epidemiology, and public health",
+        "Co-design of analytical frameworks for social science and applied research studies",
+        "Machine learning applied to conflict data and social science research",
         "Temporal validation strategies for time-sensitive research questions",
         "Statistical methodology consulting (survival analysis, causal inference)",
         "Co-authorship and support through the full publication process",
       ],
       why: [
-        "Active publications in BMC Urology and ML research journals",
+        "Active publications in peer-reviewed ML and applied research journals",
         "Experience with ACLED conflict data and geospatial analysis",
         "Rigorous approach to temporal validation and avoiding data leakage",
         "Collaborative mindset: we integrate seamlessly with your team",
