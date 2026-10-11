@@ -129,7 +129,7 @@ const showFilters = albums.length > 2;
   .gallery-hero h1 {
     font-family: var(--font-heading); /* was: Helvetica, Arial, sans-serif */
     font-size: 3rem;
-    color: var(--primary);
+    color: var(--heading);
     margin-bottom: 1rem;
   }
 
@@ -151,9 +151,9 @@ const showFilters = albums.length > 2;
 
   .filter-chip {
     padding: 0.6rem 1.4rem;
-    border: 2px solid rgba(10, 37, 64, 0.12);
+    border: 2px solid var(--border-strong);
     background: transparent;
-    color: var(--primary);
+    color: var(--heading);
     border-radius: 50px;
     font-family: inherit;
     font-size: 0.9rem;
@@ -164,7 +164,7 @@ const showFilters = albums.length > 2;
 
   .filter-chip:hover {
     border-color: var(--accent);
-    color: var(--accent-dark);
+    color: var(--accent-ink);
   }
 
   .filter-chip.active {
@@ -193,7 +193,7 @@ const showFilters = albums.length > 2;
     overflow: hidden;
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border);
     transition:
       transform 0.4s ease,
       box-shadow 0.4s ease;

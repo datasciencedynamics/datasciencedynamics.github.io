@@ -142,7 +142,7 @@ const items = [
     font-family: var(--font-heading);
     font-size: 2.6rem;
     line-height: 1.2;
-    color: var(--primary);
+    color: var(--heading);
     margin-bottom: 1rem;
     font-weight: 400;
   }
@@ -160,10 +160,10 @@ const items = [
   .poster-btn {
     display: inline-block;
     padding: 0.85rem 1.6rem;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--border-strong);
     border-radius: 10px;
-    background: #ffffff;
-    color: #1a5fd0;
+    background: var(--surface);
+    color: var(--accent-text);
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
@@ -173,7 +173,7 @@ const items = [
 
   .poster-btn:hover {
     border-color: var(--accent);
-    color: var(--accent-dark);
+    color: var(--accent-ink);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   }
@@ -204,8 +204,8 @@ const items = [
   }
 
   .choc-frame {
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 14px;
     padding: 1rem;
     overflow: hidden;
@@ -238,7 +238,7 @@ const items = [
     height: 260px;
     display: block;
     border: 0;
-    background: #f4f6f8;
+    background: var(--surface-muted);
     pointer-events: none;
   }
 
@@ -250,7 +250,7 @@ const items = [
     font-family: var(--font-heading);
     font-size: 1.15rem;
     font-weight: 600;
-    color: var(--primary);
+    color: var(--heading);
     margin-bottom: 0.3rem;
   }
 
@@ -370,7 +370,7 @@ const items = [
 
   .lb-btn:hover {
     background: var(--accent);
-    color: var(--primary);
+    color: var(--heading);
   }
   .lb-prev {
     left: 2rem;
