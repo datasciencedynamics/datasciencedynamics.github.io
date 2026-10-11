@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
 // -----------------------------------------------------------------
 // One object per photo. Drop the image in public/photos/events/ and
@@ -8,14 +8,21 @@ import Layout from '../layouts/Layout.astro';
 // -----------------------------------------------------------------
 const photos = [
   {
+    src: "/photos/events/jupytercon_oscar_2025.jpg",
+    album: "JupyterCon 2025",
+    caption: "At JupyterCon 2025, San Diego",
+  },
+  {
     src: "/photos/events/5-PLDSC2026_Poster Awards-5.jpg",
     album: "CHOC 2026",
-    caption: "Best Poster Award, Pediatric and Lifespan Data Science Conference 2026",
+    caption:
+      "Best Poster Award, Pediatric and Lifespan Data Science Conference 2026",
   },
   {
     src: "/photos/events/IMG_0716.jpg",
     album: "USD Commencement 2026",
-    caption: "With Dr. Ebrahim Tarshizi at the University of San Diego MS in Applied Data Science and MS in Applied Artificial Intelligence commencement, 2026",
+    caption:
+      "With Dr. Ebrahim Tarshizi at the University of San Diego MS in Applied Data Science and MS in Applied Artificial Intelligence commencement, 2026",
   },
 ];
 
@@ -24,46 +31,60 @@ const showFilters = albums.length > 2;
 ---
 
 <Layout title="Event Gallery | Data Science Dynamics">
-
   <section class="gallery-page">
     <div class="gallery-hero">
       <!-- <span class="section-tag">Out in the Field</span> -->
       <h1>Event Gallery</h1>
-      <p>Talks, conferences, and awards from the Data Science Dynamics team. Click any photo to view it full size.</p>
+      <p>
+        Talks, conferences, and awards from the Data Science Dynamics team.
+        Click any photo to view it full size.
+      </p>
     </div>
 
-    {showFilters && (
-      <div class="gallery-filters">
-        {albums.map((album, i) => (
-          <button class:list={["filter-chip", { active: i === 0 }]} data-album={album}>{album}</button>
-        ))}
-      </div>
-    )}
+    {
+      showFilters && (
+        <div class="gallery-filters">
+          {albums.map((album, i) => (
+            <button
+              class:list={["filter-chip", { active: i === 0 }]}
+              data-album={album}
+            >
+              {album}
+            </button>
+          ))}
+        </div>
+      )
+    }
 
     <div class="gallery" id="gallery">
-      {photos.map((p, i) => (
-        <figure
-          class="gallery-item"
-          data-album={p.album}
-          data-src={p.src}
-          data-caption={p.caption}
-          style={`animation-delay:${i * 0.04}s`}
-        >
-          <img src={p.src} alt={p.caption} loading="lazy" />
-          <figcaption class="caption">
-            <span class="cap-album">{p.album}</span>
-            <span class="cap-title">{p.caption}</span>
-          </figcaption>
-        </figure>
-      ))}
+      {
+        photos.map((p, i) => (
+          <figure
+            class="gallery-item"
+            data-album={p.album}
+            data-src={p.src}
+            data-caption={p.caption}
+            style={`animation-delay:${i * 0.04}s`}
+          >
+            <img src={p.src} alt={p.caption} loading="lazy" />
+            <figcaption class="caption">
+              <span class="cap-album">{p.album}</span>
+              <span class="cap-title">{p.caption}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
     </div>
   </section>
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
     <button class="lb-close" id="lbClose" aria-label="Close">&#10005;</button>
-    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
-    <button class="lb-btn lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous"
+      >&#8249;</button
+    >
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next">&#8250;</button
+    >
     <div class="lightbox-content">
       <img id="lbImg" src="" alt="" />
       <div class="lightbox-meta">
@@ -73,7 +94,6 @@ const showFilters = albums.length > 2;
       </div>
     </div>
   </div>
-
 </Layout>
 
 <style>
@@ -88,7 +108,10 @@ const showFilters = albums.length > 2;
   }
 
   /* ---- Header ---- */
-  .gallery-hero { text-align: center; margin-bottom: 2.5rem; }
+  .gallery-hero {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
 
   .section-tag {
     display: inline-block;
@@ -103,14 +126,19 @@ const showFilters = albums.length > 2;
     text-transform: uppercase;
   }
 
-    .gallery-hero h1 {
-    font-family: var(--font-heading);   /* was: Helvetica, Arial, sans-serif */
+  .gallery-hero h1 {
+    font-family: var(--font-heading); /* was: Helvetica, Arial, sans-serif */
     font-size: 3rem;
     color: var(--primary);
     margin-bottom: 1rem;
-    }
+  }
 
-  .gallery-hero p { font-size: 1.2rem; color: var(--text-light); max-width: 700px; margin: 0 auto; }
+  .gallery-hero p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+  }
 
   /* ---- Filter chips ---- */
   .gallery-filters {
@@ -134,7 +162,10 @@ const showFilters = albums.length > 2;
     transition: all 0.3s ease;
   }
 
-  .filter-chip:hover { border-color: var(--accent); color: var(--accent-dark); }
+  .filter-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent-dark);
+  }
 
   .filter-chip.active {
     background: var(--accent);
@@ -163,18 +194,32 @@ const showFilters = albums.length > 2;
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(0, 0, 0, 0.05);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition:
+      transform 0.4s ease,
+      box-shadow 0.4s ease;
     animation: itemIn 0.45s ease both;
   }
 
   @keyframes itemIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .gallery-item:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14); }
+  .gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+  }
 
-  .gallery-item img { width: 100%; display: block; }
+  .gallery-item img {
+    width: 100%;
+    display: block;
+  }
 
   .gallery-item .caption {
     position: absolute;
@@ -184,12 +229,18 @@ const showFilters = albums.length > 2;
     justify-content: flex-end;
     padding: 1.25rem;
     color: #fff;
-    background: linear-gradient(to top, rgba(10, 37, 64, 0.85) 0%, rgba(10, 37, 64, 0) 55%);
+    background: linear-gradient(
+      to top,
+      rgba(10, 37, 64, 0.85) 0%,
+      rgba(10, 37, 64, 0) 55%
+    );
     opacity: 0;
     transition: opacity 0.35s ease;
   }
 
-  .gallery-item:hover .caption { opacity: 1; }
+  .gallery-item:hover .caption {
+    opacity: 1;
+  }
 
   .caption .cap-album {
     font-size: 0.75rem;
@@ -200,7 +251,11 @@ const showFilters = albums.length > 2;
     margin-bottom: 0.25rem;
   }
 
-  .caption .cap-title { font-size: 1rem; font-weight: 600; line-height: 1.35; }
+  .caption .cap-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
 
   /* ---- Lightbox ---- */
   .lightbox {
@@ -214,11 +269,16 @@ const showFilters = albums.length > 2;
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
+    transition:
+      opacity 0.35s ease,
+      visibility 0.35s ease;
     padding: 2rem;
   }
 
-  .lightbox.active { opacity: 1; visibility: visible; }
+  .lightbox.active {
+    opacity: 1;
+    visibility: visible;
+  }
 
   .lightbox-content {
     max-width: 90vw;
@@ -230,7 +290,9 @@ const showFilters = albums.length > 2;
     transition: transform 0.35s ease;
   }
 
-  .lightbox.active .lightbox-content { transform: scale(1); }
+  .lightbox.active .lightbox-content {
+    transform: scale(1);
+  }
 
   .lightbox-content img {
     max-width: 100%;
@@ -239,7 +301,11 @@ const showFilters = albums.length > 2;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
   }
 
-  .lightbox-meta { text-align: center; color: #fff; margin-top: 1.25rem; }
+  .lightbox-meta {
+    text-align: center;
+    color: #fff;
+    margin-top: 1.25rem;
+  }
 
   .lightbox-meta .lb-album {
     font-size: 0.8rem;
@@ -250,8 +316,15 @@ const showFilters = albums.length > 2;
     margin-bottom: 0.3rem;
   }
 
-  .lightbox-meta .lb-title { font-size: 1.15rem; font-weight: 500; }
-  .lightbox-meta .lb-counter { font-size: 0.85rem; color: rgba(255, 255, 255, 0.55); margin-top: 0.5rem; }
+  .lightbox-meta .lb-title {
+    font-size: 1.15rem;
+    font-weight: 500;
+  }
+  .lightbox-meta .lb-counter {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin-top: 0.5rem;
+  }
 
   .lb-btn {
     position: fixed;
@@ -271,9 +344,16 @@ const showFilters = albums.length > 2;
     transition: background 0.25s ease;
   }
 
-  .lb-btn:hover { background: var(--accent); color: var(--primary); }
-  .lb-prev { left: 2rem; }
-  .lb-next { right: 2rem; }
+  .lb-btn:hover {
+    background: var(--accent);
+    color: var(--primary);
+  }
+  .lb-prev {
+    left: 2rem;
+  }
+  .lb-next {
+    right: 2rem;
+  }
 
   .lb-close {
     position: fixed;
@@ -290,18 +370,32 @@ const showFilters = albums.length > 2;
     transition: background 0.25s ease;
   }
 
-  .lb-close:hover { background: rgba(255, 255, 255, 0.25); }
+  .lb-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
 
   /* ---- Responsive ---- */
   @media (max-width: 768px) {
-    .gallery-page { margin-top: 140px; padding: 3rem 1.5rem 2rem; }
-    .gallery-hero h1 { font-size: 2.2rem; }
+    .gallery-page {
+      margin-top: 140px;
+      padding: 3rem 1.5rem 2rem;
+    }
+    .gallery-hero h1 {
+      font-size: 2.2rem;
+    }
   }
 
   @media (max-width: 640px) {
-    .gallery-item { flex: 0 1 100%; max-width: 100%; }
-    .lb-prev { left: 0.75rem; }
-    .lb-next { right: 0.75rem; }
+    .gallery-item {
+      flex: 0 1 100%;
+      max-width: 100%;
+    }
+    .lb-prev {
+      left: 0.75rem;
+    }
+    .lb-next {
+      right: 0.75rem;
+    }
   }
 </style>
 
@@ -310,7 +404,7 @@ const showFilters = albums.length > 2;
   // filtering and the lightbox, reading data straight off the DOM.
   const items = Array.from(document.querySelectorAll(".gallery-item"));
   const chips = Array.from(document.querySelectorAll(".filter-chip"));
-  let visible = items.slice();  // items in the current filter (drives lightbox nav)
+  let visible = items.slice(); // items in the current filter (drives lightbox nav)
   let lbIndex = 0;
 
   // ---- Filtering ----
@@ -380,7 +474,9 @@ const showFilters = albums.length > 2;
   document.getElementById("lbClose").addEventListener("click", closeLightbox);
   lbPrev.addEventListener("click", () => nav(-1));
   lbNext.addEventListener("click", () => nav(1));
-  lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
 
   document.addEventListener("keydown", (e) => {
     if (!lightbox.classList.contains("active")) return;
