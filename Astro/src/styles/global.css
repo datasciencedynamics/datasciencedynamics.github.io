@@ -1201,10 +1201,75 @@ footer {
 }
 
 /* Responsive - Mobile */
+/* Theme item inside the mobile dropdown (hidden on desktop) */
+.nav-theme-item {
+    display: none;
+}
+
+.theme-menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.82rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.85rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.theme-menu-btn:hover {
+    background: var(--hover-bg);
+    color: var(--heading);
+}
+
+.theme-menu-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.theme-menu-btn .label-light,
+:root[data-theme="dark"] .theme-menu-btn .label-dark {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-menu-btn .label-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.theme-menu-btn .label-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 @media (max-width: 768px) {
     .nav-toggle {
         display: block;
     }
+
+    /* Phones: the header keeps its original logo + hamburger layout. The round
+       toggle would push the hamburger off-screen, so it is hidden here and the
+       theme switch lives in the dropdown menu instead. */
+    .nav-actions {
+        margin-left: 0;
+    }
+
+    .nav-actions .theme-toggle {
+        display: none;
+    }
+
+    .nav-theme-item {
+        display: list-item;
+    }
+
 
     .nav-links {
         display: none;
