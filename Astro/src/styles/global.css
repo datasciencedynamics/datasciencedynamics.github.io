@@ -328,24 +328,6 @@ nav a:hover::after {
     align-items: center;
 }
 
-.hero-kicker {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--electric-soft);
-    margin-bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.hero-kicker::before {
-    content: "";
-    width: 28px;
-    height: 2px;
-    background: var(--electric);
-    border-radius: 1px;
-}
-
 .hero-text h1 {
     font-family: var(--font-heading);
     font-weight: 600;
@@ -357,7 +339,7 @@ nav a:hover::after {
     text-wrap: balance;
 }
 
-.hero-text p:not(.hero-kicker) {
+.hero-text p {
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.78);
     margin-bottom: 2.25rem;
