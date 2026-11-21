@@ -1,15 +1,29 @@
 ---
+// Self-hosted fonts (served from this origin, no Google Fonts round trip).
+// Only the weights the stylesheet uses.
+import "@fontsource/inter/latin-300.css";
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-500.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/syne/latin-600.css";
+import "@fontsource/syne/latin-700.css";
+import "@fontsource/syne/latin-800.css";
 import "../styles/global.css";
 
 export interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
 const {
   title,
   description = "Data Science Dynamics offers expert data science consulting specializing in clinical prediction modeling, machine learning, and advanced analytics for healthcare and research institutions.",
+  image = "/og-image.png",
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
 ---
 
 <!doctype html>
@@ -19,7 +33,21 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link rel="canonical" href={canonical} />
     <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#185FA5" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Data Science Dynamics" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <script is:inline>
       // Light is the default. Dark applies only if the visitor clicked the
       // toggle earlier in this browser session (session cookie shared with
@@ -28,17 +56,8 @@ const {
         document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      is:inline
-      src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"
-    ></script>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body>
     <div id="particles-js"></div>
@@ -51,12 +70,16 @@ const {
               class="logo-light"
               src="/data_science_dynamics_logo.svg"
               alt="Data Science Dynamics"
+              width="380"
+              height="104"
               style="max-width: 300px;"
             />
             <img
               class="logo-dark"
               src="/data_science_dynamics_logo_white.svg"
               alt="Data Science Dynamics"
+              width="380"
+              height="104"
               style="max-width: 300px;"
             />
           </a>
@@ -150,6 +173,9 @@ const {
             src="/data_science_dynamics_logo_white.svg"
             alt="Data Science Dynamics"
             class="footer-logo"
+            width="380"
+            height="104"
+            loading="lazy"
             style="max-width: 300px; margin-bottom: 15px;"
           />
           <p class="footer-about">
@@ -181,7 +207,11 @@ const {
       </div>
     </footer>
 
-    <script is:inline>
+    <script>
+      // Bundled by Astro: minified, cached, and loaded as a deferred module so
+      // it never blocks first paint. particles.js attaches window.particlesJS.
+      import "particles.js";
+
       // Theme toggle
       (function () {
         const root = document.documentElement;
@@ -242,10 +272,18 @@ const {
         }
       });
 
-      // Particles
-      particlesJS("particles-js", {
+      // Particles. Skipped for visitors who asked for reduced motion, and
+      // lighter on small screens where the canvas competes with scrolling.
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const smallScreen = window.matchMedia("(max-width: 768px)").matches;
+      if (!reduceMotion) initParticles(smallScreen ? 22 : 45);
+
+      function initParticles(count) {
+      (window as any).particlesJS("particles-js", {
         particles: {
-          number: { value: 45, density: { enable: true, value_area: 900 } },
+          number: { value: count, density: { enable: true, value_area: 900 } },
           color: { value: ["#185FA5", "#2b7fd4", "#4a9fe0"] },
           shape: { type: "circle" },
           opacity: {
@@ -289,6 +327,7 @@ const {
         },
         retina_detect: true,
       });
+      }
 
       // Scroll-aware navbar
       const header = document.querySelector("header");
