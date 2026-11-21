@@ -22,10 +22,10 @@ import Layout from "../layouts/Layout.astro";
       <!-- Evaluation panel: an illustrative model-evaluation readout, drawn in
            on load. It stands in for what the work actually produces. -->
       <div class="hero-visual" aria-hidden="true">
-        <div class="eval-panel">
+        <div class="eval-panel" id="evalPanel">
           <div class="eval-head">
-            <span class="eval-title">Model evaluation</span>
-            <span class="eval-pill">holdout, n = 12,480</span>
+            <span class="eval-title" id="evalTitle">ROC curve</span>
+            <span class="eval-pill" id="evalPill">holdout, n = 12,480</span>
           </div>
           <svg class="eval-chart" viewBox="0 0 320 220" role="img">
             <defs>
@@ -44,36 +44,20 @@ import Layout from "../layouts/Layout.astro";
               <line x1="40" y1="105" x2="300" y2="105" />
               <line x1="40" y1="147.5" x2="300" y2="147.5" />
             </g>
-            <line class="eval-chance" x1="40" y1="190" x2="300" y2="20" />
-            <path
-              class="eval-area"
-              d="M40 190 C 60 110, 80 70, 120 48 S 220 24, 300 20 L300 190 Z"
-            ></path>
-            <path
-              class="eval-roc"
-              d="M40 190 C 60 110, 80 70, 120 48 S 220 24, 300 20"
-            ></path>
-            <circle class="eval-dot" cx="120" cy="48" r="4.5"></circle>
+            <line class="eval-chance" id="evalChance" x1="40" y1="190" x2="300" y2="20" />
+            <path class="eval-area" id="evalArea" d=""></path>
+            <path class="eval-roc" id="evalCurve" d=""></path>
+            <circle class="eval-dot" id="evalDot" cx="120" cy="48" r="4.5"></circle>
             <text x="38" y="206" class="eval-axis">0</text>
             <text x="292" y="206" class="eval-axis">1.0</text>
             <text x="22" y="24" class="eval-axis">1.0</text>
-            <text x="150" y="214" class="eval-axis eval-axis--label">
+            <text x="170" y="214" class="eval-axis eval-axis--label" id="evalXLabel">
               False positive rate
             </text>
           </svg>
-          <div class="eval-metrics">
-            <div>
-              <span class="eval-metric">0.91</span>
-              <span class="eval-metric-label">AUC</span>
-            </div>
-            <div>
-              <span class="eval-metric">0.84</span>
-              <span class="eval-metric-label">Recall</span>
-            </div>
-            <div>
-              <span class="eval-metric">0.02</span>
-              <span class="eval-metric-label">Calibration error</span>
-            </div>
+          <div class="eval-metrics" id="evalMetrics"></div>
+          <div class="eval-dots" id="evalDots">
+            <span class="is-active"></span><span></span><span></span>
           </div>
         </div>
       </div>
@@ -825,4 +809,84 @@ import Layout from "../layouts/Layout.astro";
     );
     document.querySelectorAll(".band-number").forEach((el) => io.observe(el));
   }
+
+  // Hero evaluation panel: cycle ROC -> precision-recall -> calibration.
+  (function () {
+    const panel = document.getElementById("evalPanel");
+    if (!panel) return;
+    const views = [
+      {
+        title: "ROC curve",
+        pill: "holdout, n = 12,480",
+        x: "False positive rate",
+        chance: [40, 190, 300, 20],
+        curve: "M40 190 C 60 110, 80 70, 120 48 S 220 24, 300 20",
+        dot: [120, 48],
+        metrics: [["0.91", "AUC"], ["0.84", "Recall"], ["0.86", "Specificity"]],
+      },
+      {
+        title: "Precision-recall",
+        pill: "prevalence 18%",
+        x: "Recall",
+        chance: [40, 159, 300, 159],
+        curve: "M40 28 C 110 30, 170 42, 215 78 S 280 140, 300 158",
+        dot: [215, 78],
+        metrics: [["0.78", "Average precision"], ["0.81", "Precision"], ["0.84", "Recall"]],
+      },
+      {
+        title: "Calibration",
+        pill: "10 bins, isotonic",
+        x: "Predicted probability",
+        chance: [40, 190, 300, 20],
+        curve: "M40 190 C 90 162, 120 118, 170 102 S 250 52, 300 24",
+        dot: [170, 102],
+        metrics: [["0.02", "Calibration error"], ["0.09", "Brier score"], ["0.98", "Slope"]],
+      },
+    ];
+    const el = (id) => document.getElementById(id);
+    const dots = Array.from(el("evalDots").children);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let i = 0;
+    let timer = null;
+
+    function show(idx) {
+      const v = views[idx];
+      el("evalTitle").textContent = v.title;
+      el("evalPill").textContent = v.pill;
+      el("evalXLabel").textContent = v.x;
+      const c = el("evalChance");
+      c.setAttribute("x1", v.chance[0]); c.setAttribute("y1", v.chance[1]);
+      c.setAttribute("x2", v.chance[2]); c.setAttribute("y2", v.chance[3]);
+      el("evalCurve").setAttribute("d", v.curve);
+      el("evalArea").setAttribute("d", v.curve + " L300 190 L40 190 Z");
+      el("evalDot").setAttribute("cx", v.dot[0]);
+      el("evalDot").setAttribute("cy", v.dot[1]);
+      el("evalMetrics").innerHTML = v.metrics
+        .map(([n, l]) => `<div><span class="eval-metric">${n}</span><span class="eval-metric-label">${l}</span></div>`)
+        .join("");
+      dots.forEach((d, k) => d.classList.toggle("is-active", k === idx));
+      // Restart the draw-in animation.
+      panel.classList.remove("is-drawing");
+      void panel.offsetWidth;
+      panel.classList.add("is-drawing");
+    }
+
+    function next() { i = (i + 1) % views.length; show(i); }
+    function start() { if (!timer && !reduce) timer = setInterval(next, 5000); }
+    function stop() { clearInterval(timer); timer = null; }
+
+    show(0);
+    start();
+    panel.addEventListener("mouseenter", stop);
+    panel.addEventListener("mouseleave", start);
+    document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+    dots.forEach((d, k) =>
+      d.addEventListener("click", () => {
+        stop();
+        i = k;
+        show(i);
+        start();
+      }),
+    );
+  })();
 </script>
