@@ -63,11 +63,18 @@
     color-scheme: dark;
 }
 
+/* Fixed header is 120px logo + 2 x 0.5rem padding + 1px border = 137px.
+   Anchor targets scroll to sit exactly under it, with no sliver of the
+   previous section showing. */
+:root {
+    --header-h: 137px;
+}
+
 #services,
 #work,
 #about,
 #contact {
-    scroll-margin-top: 140px;
+    scroll-margin-top: var(--header-h);
 }
 
 * {
@@ -143,11 +150,10 @@ header {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     padding: 0.5rem 0;
-    transition: padding 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    transition: box-shadow 0.35s ease, background 0.35s ease;
 }
 
 header.scrolled {
-    padding: 0;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
     background: var(--header-bg-scrolled);
 }
@@ -172,6 +178,13 @@ header.scrolled {
     align-items: center;
     justify-content: space-between;
     position: relative;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border-radius: 0;
 }
 
 .logo img {
@@ -276,10 +289,10 @@ nav a:hover::after {
     display: block;
 }
 
-/* inline, like the light logo: a block image drops the line-box strut
-   and the header changes height when the theme flips */
+/* The logo link is a flex row, so swapping which image is shown keeps the
+   header the same height. */
 :root[data-theme="dark"] .logo .logo-dark {
-    display: inline;
+    display: block;
 }
 
 :root[data-theme="dark"] .theme-toggle .icon-moon,
@@ -290,7 +303,7 @@ nav a:hover::after {
 
 /* Hero (sits on the dark particles layer) */
 .hero {
-    margin-top: 136px;
+    margin-top: var(--header-h);
     position: relative;
     z-index: 1;
     color: #ffffff;
