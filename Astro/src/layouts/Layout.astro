@@ -58,6 +58,10 @@ const ogImage = new URL(image, Astro.site);
     </script>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- particles.js is a classic (non-module) script: it relies on sloppy
+         mode, so it is served as-is from /public rather than bundled.
+         `defer` keeps it off the critical path. -->
+    <script is:inline defer src="/js/particles.min.js"></script>
   </head>
   <body>
     <div id="particles-js"></div>
@@ -209,8 +213,7 @@ const ogImage = new URL(image, Astro.site);
 
     <script>
       // Bundled by Astro: minified, cached, and loaded as a deferred module so
-      // it never blocks first paint. particles.js attaches window.particlesJS.
-      import "particles.js";
+      // it never blocks first paint.
 
       // Theme toggle
       (function () {
@@ -278,9 +281,17 @@ const ogImage = new URL(image, Astro.site);
         "(prefers-reduced-motion: reduce)",
       ).matches;
       const smallScreen = window.matchMedia("(max-width: 768px)").matches;
-      if (!reduceMotion) initParticles(smallScreen ? 22 : 45);
+      // The deferred particles.min.js may run before or after this module, so
+      // wait for `load`, by which point every deferred script has executed.
+      const startParticles = () => {
+        if (!reduceMotion && (window as any).particlesJS) {
+          initParticles(smallScreen ? 22 : 45);
+        }
+      };
+      if (document.readyState === "complete") startParticles();
+      else window.addEventListener("load", startParticles, { once: true });
 
-      function initParticles(count) {
+      function initParticles(count: number) {
       (window as any).particlesJS("particles-js", {
         particles: {
           number: { value: count, density: { enable: true, value_area: 900 } },
