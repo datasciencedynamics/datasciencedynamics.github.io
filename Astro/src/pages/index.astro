@@ -2,43 +2,100 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Data Science Dynamics | Data Science Consulting">
+<Layout title="Data Science Dynamics | Machine Learning & Analytics Consulting">
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
       <div class="hero-text">
-        <h1>
-          Transform Data into <span class="gradient-text"
-            >Actionable Intelligence</span
-          >
-        </h1>
+        <p class="hero-kicker">Data science consulting</p>
+        <h1>Models you can trust. Pipelines you can rerun.</h1>
         <p>
-          Expert data science consulting delivering machine learning solutions,
-          predictive modeling, and advanced analytics.
+          We build and validate machine learning systems, clean up the data
+          underneath them, and ship the open-source tooling we use to do it.
         </p>
         <div class="cta-buttons">
-          <a href="#contact" class="btn btn-primary">Start a Project</a>
-          <a href="#services" class="btn btn-secondary">Explore Services</a>
+          <a href="#contact" class="btn btn-primary">Start a project</a>
+          <a href="#services" class="btn btn-ghost">Explore services</a>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="hero-stat-number">35+</div>
-            <div class="hero-stat-label">Years Combined Experience</div>
+
+      <!-- Evaluation panel: an illustrative model-evaluation readout, drawn in
+           on load. It stands in for what the work actually produces. -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="eval-panel">
+          <div class="eval-head">
+            <span class="eval-title">Model evaluation</span>
+            <span class="eval-pill">holdout, n = 12,480</span>
           </div>
-          <div class="hero-stat">
-            <div class="hero-stat-number">5</div>
-            <div class="hero-stat-label">Academic Institutions</div>
+          <svg class="eval-chart" viewBox="0 0 320 220" role="img">
+            <defs>
+              <linearGradient id="rocFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3d8bff" stop-opacity="0.35" />
+                <stop offset="100%" stop-color="#3d8bff" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <g class="eval-grid">
+              <line x1="40" y1="20" x2="40" y2="190" />
+              <line x1="40" y1="190" x2="300" y2="190" />
+              <line x1="105" y1="20" x2="105" y2="190" />
+              <line x1="170" y1="20" x2="170" y2="190" />
+              <line x1="235" y1="20" x2="235" y2="190" />
+              <line x1="40" y1="62.5" x2="300" y2="62.5" />
+              <line x1="40" y1="105" x2="300" y2="105" />
+              <line x1="40" y1="147.5" x2="300" y2="147.5" />
+            </g>
+            <line class="eval-chance" x1="40" y1="190" x2="300" y2="20" />
+            <path
+              class="eval-area"
+              d="M40 190 C 60 110, 80 70, 120 48 S 220 24, 300 20 L300 190 Z"
+            ></path>
+            <path
+              class="eval-roc"
+              d="M40 190 C 60 110, 80 70, 120 48 S 220 24, 300 20"
+            ></path>
+            <circle class="eval-dot" cx="120" cy="48" r="4.5"></circle>
+            <text x="38" y="206" class="eval-axis">0</text>
+            <text x="292" y="206" class="eval-axis">1.0</text>
+            <text x="22" y="24" class="eval-axis">1.0</text>
+            <text x="150" y="214" class="eval-axis eval-axis--label">
+              False positive rate
+            </text>
+          </svg>
+          <div class="eval-metrics">
+            <div>
+              <span class="eval-metric">0.91</span>
+              <span class="eval-metric-label">AUC</span>
+            </div>
+            <div>
+              <span class="eval-metric">0.84</span>
+              <span class="eval-metric-label">Recall</span>
+            </div>
+            <div>
+              <span class="eval-metric">0.02</span>
+              <span class="eval-metric-label">Calibration error</span>
+            </div>
           </div>
-          <div class="hero-stat">
-            <div class="hero-stat-number">10+</div>
-            <div class="hero-stat-label">Models Deployed</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-number">10+</div>
-            <div class="hero-stat-label">Publications</div>
-          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-band">
+      <div class="hero-band-inner">
+        <div class="band-stat">
+          <span class="band-number" data-count="35" data-suffix="+">35+</span>
+          <span class="band-label">years combined experience</span>
+        </div>
+        <div class="band-stat">
+          <span class="band-number" data-count="5">5</span>
+          <span class="band-label">academic institutions</span>
+        </div>
+        <div class="band-stat">
+          <span class="band-number" data-count="10" data-suffix="+">10+</span>
+          <span class="band-label">models in production</span>
+        </div>
+        <div class="band-stat">
+          <span class="band-number" data-count="10" data-suffix="+">10+</span>
+          <span class="band-label">peer-reviewed publications</span>
         </div>
       </div>
     </div>
@@ -48,176 +105,154 @@ import Layout from "../layouts/Layout.astro";
   <div class="services-wrap" id="services">
     <section class="services">
       <div class="section-header">
-        <span class="section-tag">What We Do</span>
-        <h2>Specialized Data Science Services</h2>
+        <span class="section-tag">What we do</span>
+        <h2>Specialized data science services</h2>
         <p>
-          Comprehensive solutions tailored to your analytical needs, from
-          predictive modeling to custom tool development
+          From exploratory analysis to deployed models and the tooling in
+          between. Open any card for the specifics.
         </p>
       </div>
       <div class="services-grid">
-        <div class="service-card" onclick="openModal('ml')">
-          <h3>Machine Learning Applications</h3>
+        <button type="button" class="service-card" data-modal="ml">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+          </span>
+          <h3>Machine learning</h3>
           <p>
-            End-to-end predictive modeling matched to your data and problem, not
-            to whatever is trendy. Classification, regression, and forecasting,
-            built with rigorous evaluation so you know it works before it ships.
+            Classification, regression, and forecasting models matched to your
+            data and problem, benchmarked against baselines before they ship.
           </p>
-          <span class="service-card-cta"
-            >Explore <span class="cta-arrow"></span></span
-          >
-        </div>
-        <div class="service-card" onclick="openModal('eda')">
-          <h3>Exploratory Data Analysis</h3>
+          <span class="service-card-cta">Explore <span class="cta-arrow">&rarr;</span></span>
+        </button>
+        <button type="button" class="service-card" data-modal="eda">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8 11h6M11 8v6"/></svg>
+          </span>
+          <h3>Exploratory data analysis</h3>
           <p>
-            In-depth statistical analysis and visualization to uncover patterns,
-            relationships, and insights. Author of production-grade EDA toolkits
-            used across research institutions.
+            Statistical summaries, anomaly detection, and visualization that
+            tell you what is in the data before anything is built on it.
           </p>
-          <span class="service-card-cta"
-            >Explore <span class="cta-arrow"></span></span
-          >
-        </div>
-        <div class="service-card" onclick="openModal('dataeng')">
-          <h3>Data Engineering & Business Intelligence</h3>
+          <span class="service-card-cta">Explore <span class="cta-arrow">&rarr;</span></span>
+        </button>
+        <button type="button" class="service-card" data-modal="dataeng">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+          </span>
+          <h3>Data engineering &amp; BI</h3>
           <p>
-            Turn scattered, messy data into clean pipelines and dashboards
-            people actually use. ETL, data warehousing, and reporting built for
-            reliability, so the numbers are trustworthy and always current.
+            ETL pipelines, warehouses, and dashboards built for reliability, so
+            the numbers are current and people actually use them.
           </p>
-          <span class="service-card-cta"
-            >Explore <span class="cta-arrow"></span></span
-          >
-        </div>
-        <div class="service-card" onclick="openModal('tools')">
-          <h3>Custom Tool Development</h3>
+          <span class="service-card-cta">Explore <span class="cta-arrow">&rarr;</span></span>
+        </button>
+        <button type="button" class="service-card" data-modal="tools">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5 5L22 9l-3-3-2.3 1.3z"/><path d="M12 12l-8.5 8.5a1.5 1.5 0 0 0 2 2L14 14"/></svg>
+          </span>
+          <h3>Custom tool development</h3>
           <p>
-            Build proprietary Python libraries and analytical frameworks.
-            Experience creating model diagnostics tools and automated evaluation
-            pipelines for reproducible research.
+            Python libraries, model diagnostics, and automated evaluation
+            pipelines built to production standards and documented for handoff.
           </p>
-          <span class="service-card-cta"
-            >Explore <span class="cta-arrow"></span></span
-          >
-        </div>
-        <div class="service-card" onclick="openModal('training')">
-          <h3>Training & Education</h3>
+          <span class="service-card-cta">Explore <span class="cta-arrow">&rarr;</span></span>
+        </button>
+        <button type="button" class="service-card" data-modal="training">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8l10-5 10 5-10 5z"/><path d="M6 10v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 8v6"/></svg>
+          </span>
+          <h3>Training &amp; education</h3>
           <p>
-            Corporate workshops and academic instruction in data science
-            fundamentals, machine learning techniques, and best practices.
-            Curriculum development for university-level courses.
+            Workshops and university-level courses in statistics, Python, and
+            machine learning, taught by people who teach for a living.
           </p>
-          <span class="service-card-cta"
-            >Explore <span class="cta-arrow"></span></span
-          >
-        </div>
-        <div class="service-card" onclick="openModal('research')">
-          <h3>Research Collaboration</h3>
+          <span class="service-card-cta">Explore <span class="cta-arrow">&rarr;</span></span>
+        </button>
+        <button type="button" class="service-card" data-modal="research">
+          <span class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v5l5 9a2 2 0 0 1-1.8 3H5.8A2 2 0 0 1 4 17l5-9z"/><path d="M8 15h8"/></svg>
+          </span>
+          <h3>Research collaboration</h3>
           <p>
-            Partner on research projects with emphasis on methodological
-            innovation and applied machine learning.
+            Study design through publication, with rigorous validation and
+            co-authorship where it fits.
           </p>
-          <span class="service-card-cta"
-            >Explore <span class="cta-arrow"></span></span
-          >
-        </div>
+          <span class="service-card-cta">Explore <span class="cta-arrow">&rarr;</span></span>
+        </button>
       </div>
     </section>
   </div>
 
-  <!-- Impact -->
-  <section class="impact" id="impact">
-    <div class="impact-content">
-      <h2>Selected Work & Community Impact</h2>
+  <!-- Selected work -->
+  <section class="work" id="work">
+    <div class="section-header">
+      <span class="section-tag">Selected work</span>
+      <h2>Things we have built and shown</h2>
     </div>
-    <div class="marquee-viewport">
-      <div class="marquee-track">
-        <!-- primary set -->
-        <div class="logo-item">
-          <a
-            href="https://lshpaner.github.io/eda_toolkit_docs"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="/eda_toolkit_logo.svg" alt="EDA Toolkit" />
-          </a>
+    <div class="work-grid">
+      <a
+        class="work-card work-card--wide"
+        href="https://lshpaner.github.io/eda_toolkit_docs"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="work-media work-media--logo">
+          <img src="/eda_toolkit_logo.svg" alt="" width="300" height="104" />
         </div>
-        <div class="logo-item">
-          <a
-            href="https://youtu.be/Trxoq2B8E9w?si=4GdxsaXBQv0KTldj"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="/BIT25_logo.png" width="900" height="290" loading="lazy" decoding="async" alt="BIT25 Logo" />
-          </a>
+        <div class="work-body">
+          <span class="work-kind">Open-source library</span>
+          <h3>EDA Toolkit</h3>
+          <p>
+            A Python library for fast, reproducible exploratory data analysis.
+            Used in research groups and under contract as a Taylor &amp; Francis
+            textbook.
+          </p>
         </div>
-        <div class="logo-item">
-          <a
-            href="https://jupytercon2025.sched.com/event/28H3P/eda-toolkit-tutorial-on-streamlining-exploratory-data-analysis-in-jupyter-leon-shpaner-ucla-health-oscar-gil-university-of-california-riverside"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="/jupytercon-speaker-badge.png"
-              width="520"
-              height="520"
-              loading="lazy"
-              decoding="async"
-              alt="JupyterCon 2025 Speaker"
-            />
-          </a>
+      </a>
+      <a class="work-card" href="/choc-2026">
+        <div class="work-media">
+          <img
+            src="/images/choc_pediatric_lifespan_2026.webp"
+            alt=""
+            width="1280"
+            height="720"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-        <div class="logo-item">
-          <a
-            href="https://data-science-salon-podcast.simplecast.com/episodes/reproducible-eda-building-trustworthy-analytics-pipelines-nKzHV0Vh"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="/DSS-PODCAST-LOGO.png" width="520" height="520" loading="lazy" decoding="async" alt="DSS Podcast" />
-          </a>
+        <div class="work-body">
+          <span class="work-kind">Best Poster Award, 2026</span>
+          <h3>Reproducible EDA for a pediatric diabetes cohort</h3>
         </div>
-        <!-- duplicate set for seamless loop -->
-        <div class="logo-item" aria-hidden="true">
-          <a
-            href="https://lshpaner.github.io/eda_toolkit_docs"
-            target="_blank"
-            rel="noopener noreferrer"
-            tabindex="-1"
-          >
-            <img src="/eda_toolkit_logo.svg" alt="" />
-          </a>
+      </a>
+      <a
+        class="work-card"
+        href="https://youtu.be/X0xQrCQTsKw?si=MTNSFgauhZLFRxMk"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="work-media">
+          <img
+            src="/images/EDA_Toolkit_JupyterCon2025.webp"
+            alt=""
+            width="1280"
+            height="720"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-        <div class="logo-item" aria-hidden="true">
-          <a
-            href="https://youtu.be/Trxoq2B8E9w?si=4GdxsaXBQv0KTldj"
-            target="_blank"
-            rel="noopener noreferrer"
-            tabindex="-1"
-          >
-            <img src="/BIT25_logo.png" width="900" height="290" loading="lazy" decoding="async" alt="" />
-          </a>
+        <div class="work-body">
+          <span class="work-kind">JupyterCon 2025 tutorial</span>
+          <h3>Streamlining EDA in Jupyter</h3>
         </div>
-        <div class="logo-item" aria-hidden="true">
-          <a
-            href="https://jupytercon2025.sched.com/event/28H3P/eda-toolkit-tutorial-on-streamlining-exploratory-data-analysis-in-jupyter-leon-shpaner-ucla-health-oscar-gil-university-of-california-riverside"
-            target="_blank"
-            rel="noopener noreferrer"
-            tabindex="-1"
-          >
-            <img src="/jupytercon-speaker-badge.png" width="520" height="520" loading="lazy" decoding="async" alt="" />
-          </a>
-        </div>
-        <div class="logo-item" aria-hidden="true">
-          <a
-            href="https://data-science-salon-podcast.simplecast.com/episodes/reproducible-eda-building-trustworthy-analytics-pipelines-nKzHV0Vh"
-            target="_blank"
-            rel="noopener noreferrer"
-            tabindex="-1"
-          >
-            <img src="/DSS-PODCAST-LOGO.png" width="520" height="520" loading="lazy" decoding="async" alt="" />
-          </a>
-        </div>
-      </div>
+      </a>
+    </div>
+    <div class="work-logos">
+      <span>Presented at</span>
+      <a href="https://jupytercon2025.sched.com/event/28H3P/eda-toolkit-tutorial-on-streamlining-exploratory-data-analysis-in-jupyter-leon-shpaner-ucla-health-oscar-gil-university-of-california-riverside" target="_blank" rel="noopener noreferrer"><img src="/jupytercon-speaker-badge.png" width="520" height="520" alt="JupyterCon 2025" loading="lazy" /></a>
+      <a href="https://youtu.be/Trxoq2B8E9w?si=4GdxsaXBQv0KTldj" target="_blank" rel="noopener noreferrer"><img src="/BIT25_logo.png" width="900" height="290" alt="Bio-IT World" loading="lazy" /></a>
+      <a href="https://data-science-salon-podcast.simplecast.com/episodes/reproducible-eda-building-trustworthy-analytics-pipelines-nKzHV0Vh" target="_blank" rel="noopener noreferrer"><img src="/DSS-PODCAST-LOGO.png" width="520" height="520" alt="Data Science Salon podcast" loading="lazy" /></a>
+      <a href="/portfolio" class="text-link">Full portfolio &rarr;</a>
     </div>
   </section>
 
@@ -225,8 +260,8 @@ import Layout from "../layouts/Layout.astro";
   <section class="about" id="about">
     <div class="about-content">
       <div class="section-header">
-        <span class="section-tag">Who We Are</span>
-        <h2>Expert Partnership for Data-Driven Solutions</h2>
+        <span class="section-tag">Who we are</span>
+        <h2>Practitioners, professors, and clinicians</h2>
       </div>
       <div class="about-team">
         <div class="team-member">
@@ -503,12 +538,9 @@ import Layout from "../layouts/Layout.astro";
   <!-- Contact -->
   <div class="contact-wrap" id="contact">
     <div class="section-header">
-      <span class="section-tag">Get In Touch</span>
-      <h2>Let's Discuss Your Project</h2>
-      <p>
-        Ready to transform your data into actionable insights? Reach out to
-        start the conversation
-      </p>
+      <span class="section-tag">Get in touch</span>
+      <h2>Let's talk about your data</h2>
+      <p>Tell us what you are working on. We reply within two business days.</p>
     </div>
     <section class="contact">
       <div class="contact-container">
@@ -556,7 +588,7 @@ import Layout from "../layouts/Layout.astro";
               </div>
               <div class="contact-item-text">
                 <div class="contact-item-label">Response Time</div>
-                <div class="contact-item-value">Within 48 hours</div>
+                <div class="contact-item-value">Within two business days</div>
               </div>
             </div>
           </div>
@@ -751,6 +783,10 @@ import Layout from "../layouts/Layout.astro";
     if (e.key === "Escape") closeModal();
   });
 
+  document.querySelectorAll("[data-modal]").forEach((btn) => {
+    btn.addEventListener("click", () => openModal(btn.dataset.modal));
+  });
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -760,60 +796,33 @@ import Layout from "../layouts/Layout.astro";
     });
   });
 
-  // Scroll animations
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-  );
-
-  document.querySelectorAll(".service-card, .stat-item").forEach((el) => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(20px)";
-    el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-    observer.observe(el);
-  });
-
-  // Animated counters
-  function animateCounter(element, target, suffix, duration = 2000) {
-    const increment = target / (duration / 16);
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        element.textContent = target + suffix;
-        clearInterval(timer);
-      } else {
-        element.textContent = Math.floor(current) + suffix;
-      }
-    }, 16);
+  // Count the band numbers up once they scroll into view.
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    const countUp = (el) => {
+      const target = Number(el.dataset.count);
+      const suffix = el.dataset.suffix || "";
+      const start = performance.now();
+      const dur = 1200;
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            countUp(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.6 },
+    );
+    document.querySelectorAll(".band-number").forEach((el) => io.observe(el));
   }
-
-  const statsObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (
-          entry.isIntersecting &&
-          !entry.target.classList.contains("counted")
-        ) {
-          entry.target.classList.add("counted");
-          const text = entry.target.textContent;
-          const hasPlus = text.includes("+");
-          const number = parseInt(text.replace("+", ""));
-          animateCounter(entry.target, number, hasPlus ? "+" : "");
-        }
-      });
-    },
-    { threshold: 0.5 },
-  );
-
-  document
-    .querySelectorAll(".hero-stat-number")
-    .forEach((stat) => statsObserver.observe(stat));
 </script>

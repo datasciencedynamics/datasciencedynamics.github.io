@@ -23,6 +23,7 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const isHome = Astro.url.pathname === "/";
 const ogImage = new URL(image, Astro.site);
 ---
 
@@ -63,7 +64,7 @@ const ogImage = new URL(image, Astro.site);
          `defer` keeps it off the critical path. -->
     <script is:inline defer src="/js/particles.min.js"></script>
   </head>
-  <body>
+  <body class:list={{ home: isHome }}>
     <div id="particles-js"></div>
 
     <header>
@@ -91,7 +92,7 @@ const ogImage = new URL(image, Astro.site);
 
         <ul class="nav-links">
           <li><a href="/#services">Services</a></li>
-          <li><a href="/#impact">Impact</a></li>
+          <li><a href="/#work">Work</a></li>
           <li><a href="/portfolio">Portfolio</a></li>
           <li><a href="/events">Events</a></li>
           <li><a href="https://apps.datasciencedynamics.com">Apps</a></li>
@@ -281,6 +282,8 @@ const ogImage = new URL(image, Astro.site);
         "(prefers-reduced-motion: reduce)",
       ).matches;
       const smallScreen = window.matchMedia("(max-width: 768px)").matches;
+      // Home has the dark hero backdrop; other pages stay light.
+      const onDark = document.body.classList.contains("home");
       // The deferred particles.min.js may run before or after this module, so
       // wait for `load`, by which point every deferred script has executed.
       const startParticles = () => {
@@ -295,28 +298,32 @@ const ogImage = new URL(image, Astro.site);
       (window as any).particlesJS("particles-js", {
         particles: {
           number: { value: count, density: { enable: true, value_area: 900 } },
-          color: { value: ["#185FA5", "#2b7fd4", "#4a9fe0"] },
+          color: {
+            value: onDark
+              ? ["#8cc0ff", "#3d8bff", "#ffffff"]
+              : ["#185FA5", "#2b7fd4", "#4a9fe0"],
+          },
           shape: { type: "circle" },
           opacity: {
-            value: 0.75,
+            value: 0.55,
             random: true,
-            anim: { enable: true, speed: 0.8, opacity_min: 0.25, sync: false },
+            anim: { enable: true, speed: 0.6, opacity_min: 0.2, sync: false },
           },
           size: {
-            value: 5,
+            value: 3.5,
             random: true,
-            anim: { enable: true, speed: 1.5, size_min: 1.5, sync: false },
+            anim: { enable: true, speed: 1, size_min: 1.2, sync: false },
           },
           line_linked: {
             enable: true,
-            distance: 130,
-            color: "#185FA5",
-            opacity: 0.55,
-            width: 1.2,
+            distance: 140,
+            color: onDark ? "#8cc0ff" : "#185FA5",
+            opacity: onDark ? 0.22 : 0.3,
+            width: 1,
           },
           move: {
             enable: true,
-            speed: 1.0,
+            speed: 0.7,
             direction: "none",
             random: true,
             straight: false,
@@ -328,11 +335,11 @@ const ogImage = new URL(image, Astro.site);
           detect_on: "canvas",
           events: {
             hover: { enable: true, mode: "grab" },
-            click: { enable: true, mode: "push" },
+            click: { enable: false },
             resize: true,
           },
           modes: {
-            grab: { distance: 180, line_linked: { opacity: 0.5 } },
+            grab: { distance: 180, line_linked: { opacity: 0.45 } },
             push: { particles_nb: 2 },
           },
         },
