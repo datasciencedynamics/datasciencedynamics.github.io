@@ -6,20 +6,28 @@ import Layout from "../layouts/Layout.astro";
 // point `src` at it. The cards, filter chips, and lightbox all build
 // from this list. Chips only appear once you have more than one album.
 // -----------------------------------------------------------------
+// `width` / `height` are the file's pixel dimensions; they let the browser
+// reserve the right space before the image loads (no layout shift).
 const photos = [
   {
     src: "/photos/events/jupytercon_oscar_2025.jpg",
+    width: 1200,
+    height: 1600,
     album: "JupyterCon 2025",
     caption: "At JupyterCon 2025, San Diego",
   },
   {
     src: "/photos/events/5-PLDSC2026_Poster Awards-5.jpg",
+    width: 2000,
+    height: 1333,
     album: "CHOC 2026",
     caption:
       "Best Poster Award, Pediatric and Lifespan Data Science Conference 2026",
   },
   {
     src: "/photos/events/IMG_0716.jpg",
+    width: 1500,
+    height: 2000,
     album: "USD Commencement 2026",
     caption:
       "With Dr. Ebrahim Tarshizi at the University of San Diego MS in Applied Data Science and MS in Applied Artificial Intelligence commencement, 2026",
@@ -66,7 +74,14 @@ const showFilters = albums.length > 2;
             data-caption={p.caption}
             style={`animation-delay:${i * 0.04}s`}
           >
-            <img src={p.src} alt={p.caption} loading="lazy" />
+            <img
+              src={p.src}
+              alt={p.caption}
+              width={p.width}
+              height={p.height}
+              loading="lazy"
+              decoding="async"
+            />
             <figcaption class="caption">
               <span class="cap-album">{p.album}</span>
               <span class="cap-title">{p.caption}</span>

@@ -15,15 +15,20 @@ const items = [
   },
   {
     src: "/images/PLDSC_2026_Best_Poster_Award.jpg",
+    width: 2000,
+    height: 1534,
     kind: "image",
     full: "/images/PLDSC_2026_Best_Poster_Award.jpg",
     fullKind: "image",
     title: "Best Poster Award",
     caption: "CHOC Research Institute, April 2026",
-    href: "/files/PLDSC_2026_Best_Poster_Award.pdf",
+    // The award PDF was never added to public/files, so link the image.
+    href: "/images/PLDSC_2026_Best_Poster_Award.jpg",
   },
   {
     src: "/photos/events/5-PLDSC2026_Poster Awards-5.jpg",
+    width: 2000,
+    height: 1333,
     kind: "image",
     full: "/photos/events/5-PLDSC2026_Poster Awards-5.jpg",
     fullKind: "image",
@@ -77,7 +82,10 @@ const items = [
                 <img
                   src={item.src}
                   alt={item.title}
+                  width={item.width}
+                  height={item.height}
                   loading="lazy"
+                  decoding="async"
                   draggable="false"
                 />
               )}
