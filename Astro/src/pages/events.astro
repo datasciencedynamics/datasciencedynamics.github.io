@@ -178,15 +178,19 @@ const showFilters = albums.length > 2;
   }
 
   .filter-chip:hover {
-    border-color: var(--accent);
-    color: var(--accent-ink);
+    border-color: var(--electric);
+    color: var(--accent-text);
+  }
+
+  .filter-chip.active:hover {
+    color: #ffffff;
   }
 
   .filter-chip.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--primary);
-    box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
+    background: var(--electric);
+    border-color: var(--electric);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(61, 139, 255, 0.3);
   }
 
   /* ---- Adaptive centered layout ----
