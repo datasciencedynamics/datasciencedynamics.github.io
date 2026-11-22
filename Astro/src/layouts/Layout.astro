@@ -67,7 +67,7 @@ const ogImage = new URL(image, Astro.site);
   <body class:list={{ home: isHome }}>
     <div id="particles-js"></div>
 
-    <header>
+    <header class:list={{ "on-dark": isHome }}>
       <nav class="navbar">
         <div class="logo">
           <a href="/">
@@ -347,15 +347,20 @@ const ogImage = new URL(image, Astro.site);
       });
       }
 
-      // Scroll-aware navbar
-      const header = document.querySelector("header");
-      window.addEventListener(
-        "scroll",
-        () => {
-          header.classList.toggle("scrolled", window.scrollY > 80);
-        },
-        { passive: true },
-      );
+      // Scroll-aware navbar. On the home page the header starts dark over
+      // the hero and turns light once the hero has scrolled past it.
+      const header = document.querySelector("header") as HTMLElement;
+      const hero = document.querySelector(".hero") as HTMLElement | null;
+      const updateHeader = () => {
+        header.classList.toggle("scrolled", window.scrollY > 80);
+        if (hero && document.body.classList.contains("home")) {
+          const heroBottom = hero.getBoundingClientRect().bottom;
+          header.classList.toggle("on-dark", heroBottom > header.offsetHeight);
+        }
+      };
+      updateHeader();
+      window.addEventListener("scroll", updateHeader, { passive: true });
+      window.addEventListener("resize", updateHeader);
 
       // Prevent right-click / drag on images
       document.addEventListener("contextmenu", (e) => {
