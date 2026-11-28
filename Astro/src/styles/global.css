@@ -1346,6 +1346,19 @@ nav a:hover::after {
 
 .contact-item-text {
     flex: 1;
+    min-width: 0;
+}
+
+/* Grid and flex children default to min-width:auto, which lets a long
+   unbreakable string (the email address) push the card past the viewport
+   on phones. */
+.contact-container > * {
+    min-width: 0;
+}
+
+.contact-item a,
+.contact-item-value {
+    overflow-wrap: anywhere;
 }
 
 .contact-item-label {
@@ -1391,6 +1404,7 @@ nav a:hover::after {
 
 .form-group input,
 .form-group textarea {
+    width: 100%;
     padding: 1rem;
     border: 1px solid var(--border-strong);
     border-radius: 8px;
